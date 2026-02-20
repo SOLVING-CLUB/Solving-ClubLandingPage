@@ -1,0 +1,477 @@
+/* ═══════════════════════════════════════════
+   SOLVINGCLUB — DESIGN SYSTEM
+   Inspired by Firecrawl's grid aesthetic
+═══════════════════════════════════════════ */
+
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@300;400;500&display=swap');
+
+/* ── Barber Complete Font (Logo) ── */
+@font-face {
+    font-family: "Barber Complete";
+    src: url("Barber Complete/Web Fonts/217546da9fd425e3b778117eebf3f901.eot");
+    src: url("Barber Complete/Web Fonts/217546da9fd425e3b778117eebf3f901.eot?#iefix") format("embedded-opentype"),
+        url("Barber Complete/Web Fonts/217546da9fd425e3b778117eebf3f901.woff") format("woff"),
+        url("Barber Complete/Web Fonts/217546da9fd425e3b778117eebf3f901.woff2") format("woff2"),
+        url("Barber Complete/Web Fonts/217546da9fd425e3b778117eebf3f901.ttf") format("truetype"),
+        url("Barber Complete/Web Fonts/217546da9fd425e3b778117eebf3f901.svg#Barber Complete") format("svg");
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* ── TOKENS ── */
+:root {
+  --bg:           #f8f8f6;
+  --bg-white:     #ffffff;
+  --fg:           #17171a;
+  --fg-2:         #2e2e32;
+  --muted:        #80807a;
+  --muted-2:      #b0b0aa;
+  --border:       rgba(0,0,0,0.065);
+  --border-med:   rgba(0,0,0,0.1);
+  --border-strong:rgba(0,0,0,0.15);
+  --accent:       #e8541e;
+  --accent-dim:   rgba(232,84,30,0.09);
+  --accent-border:rgba(232,84,30,0.22);
+  --accent-glow:  rgba(232,84,30,0.18);
+  --grid-sz:      152px;
+  --grid-line:    rgba(0,0,0,0.048);
+  --dot-sm:       rgba(0,0,0,0.13);
+  --dot-glow:     rgba(232,84,30,0.12);
+  --radius-sm:    7px;
+  --radius-md:    12px;
+  --radius-lg:    16px;
+  --radius-xl:    22px;
+  --shadow-sm:    0 1px 4px rgba(0,0,0,0.06);
+  --shadow-md:    0 4px 20px rgba(0,0,0,0.08);
+  --shadow-lg:    0 12px 48px rgba(0,0,0,0.1);
+  --shadow-xl:    0 24px 80px rgba(0,0,0,0.14);
+}
+
+/* ── RESET ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; font-size: 16px; }
+body {
+  font-family: 'Geist', sans-serif;
+  background: var(--bg);
+  color: var(--fg);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+img { display: block; max-width: 100%; }
+a { color: inherit; }
+button { font-family: inherit; cursor: pointer; }
+
+/* ═══════════════════════════════════════════
+   GRID BACKGROUND SYSTEM
+═══════════════════════════════════════════ */
+
+.grid-bg {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+/* The grid lines */
+.grid-lines {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(var(--grid-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+  background-size: var(--grid-sz) var(--grid-sz);
+  background-position: 0 0;
+}
+
+/* Small gray dots at every intersection */
+.grid-dots {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle, var(--dot-sm) 1.8px, transparent 1.8px);
+  background-size: var(--grid-sz) var(--grid-sz);
+  background-position: 0 0;
+}
+
+/* Edge fade */
+.grid-fade {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(to right, var(--bg) 0%, transparent 9%, transparent 91%, var(--bg) 100%),
+    radial-gradient(ellipse 75% 40% at 50% 0%, var(--bg) 0%, transparent 100%),
+    radial-gradient(ellipse 75% 30% at 50% 100%, var(--bg) 0%, transparent 100%);
+}
+
+/* ── STAR ELEMENT ── */
+/* The Firecrawl-style 4-pointed compass star */
+.grid-star {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+}
+
+/* The circular halo/glow behind the star */
+.grid-star::before {
+  content: '';
+  position: absolute;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255,255,255,0.95) 30%, rgba(255,255,255,0) 75%);
+  filter: blur(2px);
+}
+
+.star-svg {
+  position: relative;
+  z-index: 1;
+  flex-shrink: 0;
+}
+
+.star-svg.large  { width: 30px; height: 30px; }
+.star-svg.medium { width: 18px; height: 18px; }
+.star-svg.small  { width: 12px; height: 12px; }
+
+/* Animate the primary star */
+.grid-star.primary .star-svg {
+  animation: star-spin 6s ease-in-out infinite;
+}
+
+@keyframes star-spin {
+  0%, 100% { transform: rotate(0deg) scale(1); }
+  25%       { transform: rotate(10deg) scale(1.08); }
+  75%       { transform: rotate(-8deg) scale(0.95); }
+}
+
+/* Secondary stars fade in/out */
+.grid-star.secondary .star-svg {
+  animation: star-pulse 5s ease-in-out infinite;
+}
+.grid-star.secondary:nth-of-type(2) .star-svg { animation-delay: 1.5s; }
+.grid-star.secondary:nth-of-type(3) .star-svg { animation-delay: 3s; }
+
+@keyframes star-pulse {
+  0%, 100% { opacity: 0.55; transform: scale(1); }
+  50%       { opacity: 1;    transform: scale(1.15); }
+}
+
+/* ── DOT MATRIX DECORATION ── */
+/* Bottom-right decorative dot cluster like in reference */
+.dot-matrix {
+  position: absolute;
+  display: grid;
+  gap: 5px;
+}
+
+.dot-matrix span {
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: var(--dot-sm);
+  display: block;
+}
+
+/* ═══════════════════════════════════════════
+   NAVIGATION
+═══════════════════════════════════════════ */
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 500;
+  height: 58px;
+  display: flex;
+  align-items: center;
+  padding: 0 44px;
+  border-bottom: 1px solid var(--border);
+  background: rgba(248,248,246,0.88);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  justify-content: space-between;
+}
+
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  text-decoration: none;
+  color: var(--accent);
+  font-family: "Barber Complete", sans-serif;
+  font-weight: normal;
+  font-size: 24px;
+  letter-spacing: -0.025em;
+  flex-shrink: 0;
+}
+
+.nav-logo img {
+  height: 32px;
+  display: block;
+}
+
+.logo-mark {
+  width: 28px;
+  height: 28px;
+  background: var(--fg);
+  border-radius: 7px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.logo-mark svg { width: 15px; height: 15px; }
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  list-style: none;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.nav-links a {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 13.5px;
+  font-weight: 400;
+  color: var(--muted);
+  text-decoration: none;
+  padding: 6px 13px;
+  border-radius: 7px;
+  transition: color 0.16s, background 0.16s;
+  white-space: nowrap;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+  color: var(--fg);
+  background: rgba(0,0,0,0.045);
+}
+
+.nav-links a.active {
+  color: var(--fg);
+  font-weight: 500;
+}
+
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* ═══════════════════════════════════════════
+   BUTTONS
+═══════════════════════════════════════════ */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: 'Geist', sans-serif;
+  font-weight: 500;
+  font-size: 13.5px;
+  border: none;
+  border-radius: var(--radius-sm);
+  padding: 8px 16px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.16s ease;
+  white-space: nowrap;
+  line-height: 1;
+}
+
+.btn-sm   { font-size: 12.5px; padding: 6px 13px; }
+.btn-md   { font-size: 13.5px; padding: 9px 18px; }
+.btn-lg   { font-size: 14.5px; padding: 12px 24px; border-radius: var(--radius-md); }
+.btn-xl   { font-size: 15px;   padding: 14px 30px; border-radius: var(--radius-md); }
+
+.btn-ghost {
+  background: transparent;
+  color: var(--muted);
+  border: 1px solid var(--border-med);
+}
+.btn-ghost:hover { background: rgba(0,0,0,0.04); color: var(--fg); border-color: var(--border-strong); }
+
+.btn-dark {
+  background: var(--fg);
+  color: #fff;
+}
+.btn-dark:hover { background: #2a2a2e; transform: translateY(-1px); box-shadow: var(--shadow-md); }
+
+.btn-accent {
+  background: var(--accent);
+  color: #fff;
+}
+.btn-accent:hover { background: #c94318; transform: translateY(-1px); box-shadow: 0 6px 22px var(--accent-glow); }
+
+.btn-outline-accent {
+  background: transparent;
+  color: var(--accent);
+  border: 1px solid var(--accent-border);
+}
+.btn-outline-accent:hover { background: var(--accent-dim); }
+
+/* ═══════════════════════════════════════════
+   LAYOUT PRIMITIVES
+═══════════════════════════════════════════ */
+.page { position: relative; z-index: 1; }
+
+.container {
+  max-width: 1160px;
+  margin: 0 auto;
+  padding: 0 44px;
+}
+
+.section { padding: 96px 0; }
+.section-sm { padding: 64px 0; }
+.section-lg { padding: 128px 0; }
+
+.divider {
+  height: 1px;
+  background: var(--border);
+  max-width: 1160px;
+  margin: 0 auto;
+}
+
+.divider-full {
+  height: 1px;
+  background: var(--border);
+}
+
+/* ── Typography helpers ── */
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'Geist Mono', monospace;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 16px;
+}
+
+.eyebrow::before {
+  content: '';
+  width: 20px;
+  height: 1.5px;
+  background: var(--accent);
+  flex-shrink: 0;
+}
+
+.display-xl {
+  font-family: 'Instrument Serif', serif;
+  font-size: clamp(52px, 8vw, 104px);
+  font-weight: 400;
+  line-height: 1.02;
+  letter-spacing: -0.03em;
+  color: var(--fg);
+}
+
+.display-lg {
+  font-family: 'Instrument Serif', serif;
+  font-size: clamp(36px, 5.5vw, 64px);
+  font-weight: 400;
+  line-height: 1.08;
+  letter-spacing: -0.025em;
+  color: var(--fg);
+}
+
+.display-md {
+  font-family: 'Instrument Serif', serif;
+  font-size: clamp(26px, 3.5vw, 42px);
+  font-weight: 400;
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+  color: var(--fg);
+}
+
+.display-xl em,
+.display-lg em,
+.display-md em { font-style: italic; color: var(--accent); }
+
+.body-lg { font-size: 16px; line-height: 1.7; color: var(--muted); }
+.body-md { font-size: 14.5px; line-height: 1.65; color: var(--muted); }
+.body-sm { font-size: 13px;   line-height: 1.6;  color: var(--muted); }
+
+/* ── Card base ── */
+.card {
+  background: var(--bg-white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+}
+
+/* ── Tag / badge ── */
+.tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-family: 'Geist Mono', monospace;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  padding: 4px 10px;
+  border-radius: 100px;
+}
+
+.tag-accent {
+  background: var(--accent-dim);
+  border: 1px solid var(--accent-border);
+  color: var(--accent);
+}
+
+.tag-muted {
+  background: rgba(0,0,0,0.04);
+  border: 1px solid var(--border-med);
+  color: var(--muted);
+}
+
+/* ── Scroll reveal ── */
+.reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.65s ease, transform 0.65s ease;
+}
+.reveal.in { opacity: 1; transform: none; }
+.reveal-d1 { transition-delay: 0.08s; }
+.reveal-d2 { transition-delay: 0.16s; }
+.reveal-d3 { transition-delay: 0.24s; }
+.reveal-d4 { transition-delay: 0.32s; }
+
+/* ── Keyframes ── */
+@keyframes fade-in  { from { opacity:0 }              to { opacity:1 } }
+@keyframes fade-up  { from { opacity:0; transform:translateY(20px) } to { opacity:1; transform:none } }
+@keyframes slide-in { from { opacity:0; transform:translateX(-14px) } to { opacity:1; transform:none } }
+
+/* ── Footer logo ── */
+.footer-logo {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  font-family: "Barber Complete", sans-serif;
+  font-size: 25px;
+  font-weight: normal;
+  letter-spacing: -0.02em;
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.footer-logo img {
+  height: 26px;
+  display: block;
+}
+
+/* ── Responsive ── */
+@media (max-width: 900px) {
+  .container { padding: 0 20px; }
+  .nav { padding: 0 20px; }
+  .nav-links { display: none; }
+  .section { padding: 64px 0; }
+  .section-lg { padding: 80px 0; }
+}

@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About — SolvingClub</title>
+<link rel="stylesheet" href="style.css">
+<style>
+/* About hero */
+.about-hero { padding: 90px 0 80px; position: relative; }
+.about-hero-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+
+/* Quote block */
+.quote-block {
+  background: var(--fg);
+  border-radius: var(--radius-xl);
+  padding: 40px;
+  position: relative;
+  overflow: hidden;
+}
+.quote-block::before {
+  content: '';
+  position: absolute; inset: 0;
+  background-image: linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+.quote-block::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse at top left, rgba(232,84,30,0.12) 0%, transparent 60%);
+}
+.quote-text {
+  font-family: 'Instrument Serif', serif;
+  font-style: italic;
+  font-size: 24px;
+  line-height: 1.5;
+  color: rgba(255,255,255,0.88);
+  position: relative; z-index: 1;
+  margin-bottom: 20px;
+}
+.quote-cite {
+  font-family: 'Geist Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  color: var(--accent);
+  text-transform: uppercase;
+  position: relative; z-index: 1;
+}
+
+/* Values grid */
+.values-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  background: var(--bg-white);
+  margin-top: 56px;
+}
+.value-card {
+  padding: 36px 30px;
+  border-right: 1px solid var(--border);
+}
+.value-card:last-child { border-right: none; }
+.value-num {
+  font-family: 'Instrument Serif', serif;
+  font-size: 42px;
+  color: rgba(0,0,0,0.06);
+  letter-spacing: -0.04em;
+  margin-bottom: 14px;
+}
+.value-name { font-size: 15px; font-weight: 600; letter-spacing: -0.01em; margin-bottom: 10px; }
+.value-desc { font-size: 13.5px; color: var(--muted); line-height: 1.6; }
+
+/* Team */
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+  margin-top: 56px;
+}
+
+.team-card {
+  background: var(--bg-white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 28px 22px;
+  text-align: center;
+  transition: transform 0.22s cubic-bezier(0.34,1.4,0.64,1), box-shadow 0.22s;
+}
+.team-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-lg); }
+
+.team-ava {
+  width: 72px; height: 72px;
+  border-radius: 50%;
+  margin: 0 auto 16px;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Instrument Serif', serif;
+  font-size: 26px;
+  font-style: italic;
+  color: white;
+}
+
+.team-name { font-size: 14.5px; font-weight: 600; letter-spacing: -0.01em; }
+.team-role { font-family: 'Geist Mono', monospace; font-size: 11px; color: var(--muted); letter-spacing: 0.05em; margin-top: 4px; }
+.team-bio  { font-size: 12.5px; color: var(--muted); line-height: 1.55; margin-top: 12px; }
+
+.team-links { display: flex; justify-content: center; gap: 7px; margin-top: 14px; }
+.team-link {
+  width: 30px; height: 30px;
+  border: 1px solid var(--border-med);
+  border-radius: 7px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 11px; color: var(--muted);
+  text-decoration: none; transition: all 0.16s;
+}
+.team-link:hover { border-color: var(--accent); color: var(--accent); background: var(--accent-dim); }
+
+/* Reviews */
+.reviews-masonry {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  margin-top: 56px;
+  align-items: start;
+}
+
+.review-card {
+  background: var(--bg-white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 28px;
+  transition: transform 0.22s, box-shadow 0.22s;
+}
+.review-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); }
+
+.review-stars {
+  display: flex; gap: 3px; margin-bottom: 16px;
+  color: var(--accent); font-size: 13px;
+}
+
+.review-quote {
+  font-family: 'Instrument Serif', serif;
+  font-size: 17px;
+  font-style: italic;
+  line-height: 1.55;
+  color: var(--fg);
+  margin-bottom: 20px;
+}
+
+.review-author-row {
+  display: flex; align-items: center; gap: 10px;
+  padding-top: 16px;
+  border-top: 1px solid var(--border);
+}
+
+.review-ava {
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 13px; font-weight: 600; color: white;
+  flex-shrink: 0;
+}
+
+.review-who { font-size: 13.5px; font-weight: 600; }
+.review-co  { font-size: 11.5px; color: var(--muted); font-family: 'Geist Mono', monospace; margin-top: 2px; }
+
+/* Responsive */
+@media (max-width: 900px) {
+  .about-hero-inner { grid-template-columns: 1fr; gap: 40px; }
+  .values-grid { grid-template-columns: 1fr; }
+  .value-card { border-right: none; border-bottom: 1px solid var(--border); }
+  .value-card:last-child { border-bottom: none; }
+  .team-grid { grid-template-columns: repeat(2, 1fr); }
+  .reviews-masonry { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<div class="grid-bg">
+  <div class="grid-lines"></div>
+  <div class="grid-dots"></div>
+  <div class="grid-fade"></div>
+  <div class="grid-star primary" style="top: calc(var(--grid-sz)*0 - 15px); right: calc(var(--grid-sz)*0 - 15px);">
+    <svg class="star-svg large" viewBox="0 0 30 30" fill="none">
+      <path d="M15 0 C15 0 16.2 13 17 15 C18 17 30 15 30 15 C30 15 17 16.2 15 17 C13 18 15 30 15 30 C15 30 13.8 17 13 15 C12 13 0 15 0 15 C0 15 13 13.8 15 13 C17 12 15 0 15 0Z" fill="#e8541e"/>
+    </svg>
+  </div>
+  <div class="grid-star secondary" style="bottom: calc(var(--grid-sz)*2 - 9px); right: calc(var(--grid-sz)*3 - 9px); opacity:0.32; animation-delay:2s;">
+    <svg class="star-svg small" viewBox="0 0 30 30" fill="none">
+      <path d="M15 0 C15 0 16.2 13 17 15 C18 17 30 15 30 15 C30 15 17 16.2 15 17 C13 18 15 30 15 30 C15 30 13.8 17 13 15 C12 13 0 15 0 15 C0 15 13 13.8 15 13 C17 12 15 0 15 0Z" fill="#999993"/>
+    </svg>
+  </div>
+  <div style="position:absolute; top: 200px; left: 40px; opacity:0.28;">
+    <svg width="56" height="56" viewBox="0 0 56 56">
+      <g fill="rgba(0,0,0,0.3)">
+        <circle cx="4" cy="4" r="1.5"/><circle cx="14" cy="4" r="1.5"/><circle cx="24" cy="4" r="1.5"/><circle cx="34" cy="4" r="1.5"/>
+        <circle cx="4" cy="14" r="1.5"/><circle cx="14" cy="14" r="1.5"/><circle cx="24" cy="14" r="1.5"/><circle cx="34" cy="14" r="1.5"/>
+        <circle cx="4" cy="24" r="1.5"/><circle cx="14" cy="24" r="1.5"/><circle cx="24" cy="24" r="1.5"/><circle cx="34" cy="24" r="1.5"/>
+        <circle cx="4" cy="34" r="1.5"/><circle cx="14" cy="34" r="1.5"/><circle cx="24" cy="34" r="1.5"/><circle cx="34" cy="34" r="1.5"/>
+      </g>
+    </svg>
+  </div>
+</div>
+
+<div class="page">
+  <nav class="nav">
+    <a class="nav-logo" href="index.html">
+      <img src="solving-club-high-resolution-logo-transparent.png" alt="Solving Club logo">
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="work.html">Our Work</a></li>
+      <li><a href="about.html" class="active">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <div class="nav-right">
+      <a href="contact.html" class="btn btn-ghost btn-sm">Get in touch</a>
+      <a href="contact.html" class="btn btn-accent btn-sm">Start a project →</a>
+    </div>
+  </nav>
+
+  <!-- About Hero -->
+  <section class="about-hero">
+    <div class="container">
+      <div class="about-hero-inner">
+        <div style="animation: fade-up 0.65s ease both;">
+          <div class="eyebrow">Who we are</div>
+          <h1 class="display-xl" style="font-size:clamp(42px,6vw,72px);">
+            A team of<br><em>solvers</em>
+          </h1>
+          <p class="body-lg" style="max-width:420px; margin-top:18px;">
+            SolvingClub is a software & design agency founded in 2020. We're a tight-knit team of designers and engineers who care about craft, quality, and outcomes — not just deliverables.
+          </p>
+          <p class="body-md" style="max-width:420px; margin-top:14px;">
+            We partner with founders, product teams, and brand builders who want a real creative collaborator — not a vendor.
+          </p>
+          <div style="display:flex; gap:10px; margin-top:32px;">
+            <a href="contact.html" class="btn btn-dark btn-lg">Work with us →</a>
+            <a href="work.html" class="btn btn-ghost btn-lg">See our work</a>
+          </div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:12px;animation:fade-up 0.65s 0.15s ease both;">
+          <div class="quote-block">
+            <p class="quote-text">"We don't just build software. We solve problems that matter — beautifully."</p>
+            <span class="quote-cite">— SolvingClub founding principle</span>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+            <div style="background:var(--bg-white);border:1px solid var(--border);border-radius:var(--radius-md);padding:22px;text-align:center;">
+              <div style="font-family:'Instrument Serif',serif;font-size:38px;font-weight:400;letter-spacing:-0.04em;line-height:1;">48<span style="color:var(--accent);font-size:24px;">+</span></div>
+              <div style="font-family:'Geist Mono',monospace;font-size:10.5px;color:var(--muted-2);letter-spacing:0.07em;text-transform:uppercase;margin-top:5px;">Projects</div>
+            </div>
+            <div style="background:var(--bg-white);border:1px solid var(--border);border-radius:var(--radius-md);padding:22px;text-align:center;">
+              <div style="font-family:'Instrument Serif',serif;font-size:38px;font-weight:400;letter-spacing:-0.04em;line-height:1;">32<span style="color:var(--accent);font-size:24px;">+</span></div>
+              <div style="font-family:'Geist Mono',monospace;font-size:10.5px;color:var(--muted-2);letter-spacing:0.07em;text-transform:uppercase;margin-top:5px;">Clients</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Values -->
+      <div class="values-grid reveal reveal-d1">
+        <div class="value-card">
+          <div class="value-num">01</div>
+          <div class="value-name">Craft over speed</div>
+          <p class="value-desc">We move fast, but we never cut corners on quality. Every pixel and every function is intentional.</p>
+        </div>
+        <div class="value-card">
+          <div class="value-num">02</div>
+          <div class="value-name">Partners, not vendors</div>
+          <p class="value-desc">We invest in understanding your business. Your success is our success — we act accordingly.</p>
+        </div>
+        <div class="value-card">
+          <div class="value-num">03</div>
+          <div class="value-name">Radical transparency</div>
+          <p class="value-desc">Weekly demos, open Slack channels, honest timelines. No surprises, ever.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider-full"></div>
+
+  <!-- Team -->
+  <section class="section">
+    <div class="container">
+      <div class="reveal" style="text-align:center;display:flex;flex-direction:column;align-items:center;">
+        <div class="eyebrow">The team</div>
+        <h2 class="display-lg">Meet the <em>solvers</em></h2>
+        <p class="body-md" style="max-width:380px;margin-top:14px;">Small by choice. Every person is a domain expert.</p>
+      </div>
+
+      <div class="team-grid reveal reveal-d1">
+        <div class="team-card">
+          <div class="team-ava" style="background:linear-gradient(135deg,#e8541e,#f97316);">A</div>
+          <div class="team-name">Aarav Mehta</div>
+          <div class="team-role">Founder & CEO</div>
+          <p class="team-bio">Product thinker and full-stack engineer. Aarav started SolvingClub to bring real design thinking to engineering.</p>
+          <div class="team-links">
+            <a class="team-link" href="#">in</a>
+            <a class="team-link" href="#">𝕏</a>
+          </div>
+        </div>
+        <div class="team-card">
+          <div class="team-ava" style="background:linear-gradient(135deg,#4c1d95,#7c3aed);">S</div>
+          <div class="team-name">Sara Okonkwo</div>
+          <div class="team-role">Lead Designer</div>
+          <p class="team-bio">Systems thinker with a fine arts background. Sara turns complex products into intuitive, beautiful experiences.</p>
+          <div class="team-links">
+            <a class="team-link" href="#">in</a>
+            <a class="team-link" href="#">𝕏</a>
+          </div>
+        </div>
+        <div class="team-card">
+          <div class="team-ava" style="background:linear-gradient(135deg,#064e3b,#059669);">R</div>
+          <div class="team-name">Rohan Patel</div>
+          <div class="team-role">Full-stack Engineer</div>
+          <p class="team-bio">React & Node specialist. Rohan writes clean, tested code and obsesses over performance.</p>
+          <div class="team-links">
+            <a class="team-link" href="#">in</a>
+            <a class="team-link" href="#" style="font-size:10px;">GH</a>
+          </div>
+        </div>
+        <div class="team-card">
+          <div class="team-ava" style="background:linear-gradient(135deg,#1e3a5f,#2563eb);">M</div>
+          <div class="team-name">Mia Tanaka</div>
+          <div class="team-role">Product Strategist</div>
+          <p class="team-bio">Former PM at a Series B startup. Mia bridges user needs and business goals with clarity and precision.</p>
+          <div class="team-links">
+            <a class="team-link" href="#">in</a>
+            <a class="team-link" href="#">𝕏</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider-full"></div>
+
+  <!-- Reviews -->
+  <section class="section">
+    <div class="container">
+      <div class="reveal" style="text-align:center;display:flex;flex-direction:column;align-items:center;">
+        <div class="eyebrow">Client reviews</div>
+        <h2 class="display-lg">Don't take our<br><em>word</em> for it</h2>
+      </div>
+
+      <div class="reviews-masonry reveal reveal-d1">
+
+        <div style="display:flex;flex-direction:column;gap:14px;">
+          <div class="review-card">
+            <div class="review-stars">★★★★★</div>
+            <p class="review-quote">"SolvingClub transformed our MVP into a production-ready product in 6 weeks. The attention to detail is extraordinary."</p>
+            <div class="review-author-row">
+              <div class="review-ava" style="background:linear-gradient(135deg,#e8541e,#f97316);">JK</div>
+              <div><div class="review-who">James Kowalski</div><div class="review-co">CEO, NovaTech</div></div>
+            </div>
+          </div>
+          <div class="review-card">
+            <div class="review-stars">★★★★★</div>
+            <p class="review-quote">"They built us a design system that saves our entire team hours every week. Best investment we've made."</p>
+            <div class="review-author-row">
+              <div class="review-ava" style="background:linear-gradient(135deg,#4c1d95,#7c3aed);">LP</div>
+              <div><div class="review-who">Lena Pfeiffer</div><div class="review-co">CTO, Vertex Studio</div></div>
+            </div>
+          </div>
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:14px;margin-top:28px;">
+          <div class="review-card">
+            <div class="review-stars">★★★★★</div>
+            <p class="review-quote">"They don't just build software — they think like product managers. Every decision had a reason behind it."</p>
+            <div class="review-author-row">
+              <div class="review-ava" style="background:linear-gradient(135deg,#064e3b,#059669);">OM</div>
+              <div><div class="review-who">Omar Mansour</div><div class="review-co">Founder, GreenCart</div></div>
+            </div>
+          </div>
+          <div class="review-card">
+            <div class="review-stars">★★★★★</div>
+            <p class="review-quote">"Our conversion rate went up 34% after the redesign. SolvingClub understands how design connects to business outcomes — rare in any agency."</p>
+            <div class="review-author-row">
+              <div class="review-ava" style="background:linear-gradient(135deg,#1e3a5f,#2563eb);">RC</div>
+              <div><div class="review-who">Rachel Chen</div><div class="review-co">Growth Lead, Pulse Media</div></div>
+            </div>
+          </div>
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:14px;">
+          <div class="review-card">
+            <div class="review-stars">★★★★★</div>
+            <p class="review-quote">"Fast, communicative, technically excellent. We've worked with many agencies — SolvingClub is genuinely different."</p>
+            <div class="review-author-row">
+              <div class="review-ava" style="background:linear-gradient(135deg,#92400e,#d97706);">TS</div>
+              <div><div class="review-who">Tom Stavros</div><div class="review-co">Head of Product, Skybridge</div></div>
+            </div>
+          </div>
+          <div class="review-card">
+            <div class="review-stars">★★★★★</div>
+            <p class="review-quote">"I gave them a brief and they came back with something far beyond what I imagined. True creative partners."</p>
+            <div class="review-author-row">
+              <div class="review-ava" style="background:linear-gradient(135deg,#312e81,#4338ca);">AW</div>
+              <div><div class="review-who">Amara Williams</div><div class="review-co">Creative Dir., Forge Digital</div></div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section-sm">
+    <div class="container">
+      <div class="cta-dark reveal">
+        <div class="cta-dark-grid"></div>
+        <div class="cta-dark-glow"></div>
+        <div class="grid-star primary" style="position:absolute;top:-1px;right:-1px;">
+          <svg class="star-svg large" viewBox="0 0 30 30" fill="none"><path d="M15 0 C15 0 16.2 13 17 15 C18 17 30 15 30 15 C30 15 17 16.2 15 17 C13 18 15 30 15 30 C15 30 13.8 17 13 15 C12 13 0 15 0 15 C0 15 13 13.8 15 13 C17 12 15 0 15 0Z" fill="#e8541e"/></svg>
+        </div>
+        <div style="position:relative;z-index:1;text-align:center;display:flex;flex-direction:column;align-items:center;padding:24px 0;">
+          <div class="cta-eyebrow">Ready to start?</div>
+          <h2 class="cta-title" style="font-size:clamp(28px,4vw,52px);">Let's build something<br><em>worth building</em></h2>
+          <p class="cta-sub">We respond within 24 hours. No spam, no fluff.</p>
+          <div class="cta-btns">
+            <a href="contact.html" class="btn btn-white btn-lg">Start a project →</a>
+            <a href="work.html" class="btn btn-outline-white btn-lg">See our work</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider-full"></div>
+  <footer>
+    <div class="container">
+      <div class="footer-inner">
+        <a class="footer-logo" href="index.html">
+          <img src="solving-club-high-resolution-logo-transparent.png" alt="Solving Club logo">
+        </a>
+        <ul class="footer-nav">
+          <li><a href="services.html">Services</a></li>
+          <li><a href="work.html">Work</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <div class="footer-socials">
+          <a class="footer-social-btn" href="#">𝕏</a>
+          <a class="footer-social-btn" href="#">in</a>
+          <a class="footer-social-btn" href="#" style="font-size:11px;">GH</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+</div>
+<script src="main.js"></script>
+</body>
+</html>
