@@ -1,361 +1,525 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Services — SolvingClub</title>
-<link rel="stylesheet" href="style.css">
-<style>
-.services-hero { padding: 90px 0 80px; text-align: center; }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Services — SolvingClub</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .services-hero {
+      padding: 90px 0 80px;
+      text-align: center;
+    }
 
-.services-big-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 14px;
-  margin-top: 64px;
-}
+    .services-big-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+      margin-top: 64px;
+    }
 
-.svc-card {
-  background: var(--bg-white);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-xl);
-  padding: 40px;
-  transition: transform 0.22s cubic-bezier(0.34,1.4,0.64,1), box-shadow 0.22s;
-}
-.svc-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-lg); }
-.svc-card.featured {
-  border-color: var(--accent-border);
-  background: linear-gradient(135deg, rgba(232,84,30,0.03) 0%, var(--bg-white) 60%);
-}
+    .svc-card {
+      background: var(--bg-white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-xl);
+      padding: 40px;
+      transition: transform 0.22s cubic-bezier(0.34, 1.4, 0.64, 1), box-shadow 0.22s;
+    }
 
-.svc-icon-wrap {
-  width: 56px; height: 56px;
-  border-radius: 14px;
-  background: var(--accent-dim);
-  border: 1px solid var(--accent-border);
-  display: flex; align-items: center; justify-content: center;
-  color: var(--accent);
-  margin-bottom: 24px;
-}
+    .svc-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-lg);
+    }
 
-.svc-num {
-  font-family: 'Geist Mono', monospace;
-  font-size: 11px;
-  color: var(--muted-2);
-  letter-spacing: 0.07em;
-  margin-bottom: 12px;
-}
+    .svc-card.featured {
+      border-color: var(--accent-border);
+      background: linear-gradient(135deg, rgba(232, 84, 30, 0.03) 0%, var(--bg-white) 60%);
+    }
 
-.svc-name {
-  font-family: 'Instrument Serif', serif;
-  font-size: 28px;
-  font-weight: 400;
-  letter-spacing: -0.02em;
-  color: var(--fg);
-  margin-bottom: 14px;
-}
+    .svc-icon-wrap {
+      width: 56px;
+      height: 56px;
+      border-radius: 14px;
+      background: var(--accent-dim);
+      border: 1px solid var(--accent-border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--accent);
+      margin-bottom: 24px;
+    }
 
-.svc-desc {
-  font-size: 14.5px;
-  color: var(--muted);
-  line-height: 1.7;
-  margin-bottom: 26px;
-}
+    .svc-num {
+      font-family: 'Geist Mono', monospace;
+      font-size: 11px;
+      color: var(--muted-2);
+      letter-spacing: 0.07em;
+      margin-bottom: 12px;
+    }
 
-.svc-includes {
-  display: flex; flex-direction: column; gap: 9px;
-  margin-bottom: 28px;
-}
+    .svc-name {
+      font-family: 'Instrument Serif', serif;
+      font-size: 28px;
+      font-weight: 400;
+      letter-spacing: -0.02em;
+      color: var(--fg);
+      margin-bottom: 14px;
+    }
 
-.svc-include-item {
-  display: flex; align-items: center; gap: 10px;
-  font-size: 13.5px; color: var(--fg);
-}
+    .svc-desc {
+      font-size: 14.5px;
+      color: var(--muted);
+      line-height: 1.7;
+      margin-bottom: 26px;
+    }
 
-.svc-include-item::before {
-  content: '';
-  width: 18px; height: 18px;
-  border-radius: 50%;
-  background: var(--accent-dim);
-  border: 1.5px solid var(--accent-border);
-  flex-shrink: 0;
-  position: relative;
-  background-image: url("data:image/svg+xml,%3Csvg width='10' height='10' viewBox='0 0 10 10' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M2 5l2.5 2.5L8 3' stroke='%23e8541e' stroke-width='1.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-position: center;
-}
+    .svc-includes {
+      display: flex;
+      flex-direction: column;
+      gap: 9px;
+      margin-bottom: 28px;
+    }
 
-.svc-tech-pills { display: flex; flex-wrap: wrap; gap: 6px; }
+    .svc-include-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 13.5px;
+      color: var(--fg);
+    }
 
-/* Pricing hint */
-.pricing-section { background: var(--bg-white); border: 1px solid var(--border); border-radius: var(--radius-xl); overflow: hidden; }
-.pricing-header { padding: 36px 40px 28px; border-bottom: 1px solid var(--border); }
-.pricing-tiers { display: grid; grid-template-columns: repeat(3, 1fr); }
-.pricing-tier { padding: 32px 28px; border-right: 1px solid var(--border); }
-.pricing-tier:last-child { border-right: none; }
-.pricing-tier.featured-tier { background: var(--accent-dim); border-color: var(--accent-border); }
-.tier-name { font-size: 12px; font-family: 'Geist Mono', monospace; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin-bottom: 14px; }
-.tier-price { font-family: 'Instrument Serif', serif; font-size: 40px; font-weight: 400; letter-spacing: -0.04em; color: var(--fg); line-height: 1; }
-.tier-price sup { font-size: 20px; vertical-align: super; font-family: 'Geist', sans-serif; font-weight: 500; }
-.tier-period { font-size: 12px; color: var(--muted); margin-top: 5px; margin-bottom: 20px; }
-.tier-features { list-style: none; display: flex; flex-direction: column; gap: 8px; }
-.tier-features li { font-size: 13px; color: var(--muted); display: flex; align-items: center; gap: 7px; }
-.tier-features li::before { content: '✓'; color: var(--accent); font-weight: 700; font-size: 12px; }
+    .svc-include-item::before {
+      content: '';
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: var(--accent-dim);
+      border: 1.5px solid var(--accent-border);
+      flex-shrink: 0;
+      position: relative;
+      background-image: url("data:image/svg+xml,%3Csvg width='10' height='10' viewBox='0 0 10 10' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M2 5l2.5 2.5L8 3' stroke='%23e8541e' stroke-width='1.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: center;
+    }
 
-@media (max-width: 900px) {
-  .services-big-grid { grid-template-columns: 1fr; }
-  .pricing-tiers { grid-template-columns: 1fr; }
-  .pricing-tier { border-right: none; border-bottom: 1px solid var(--border); }
-  .pricing-tier:last-child { border-bottom: none; }
-}
-</style>
+    .svc-tech-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    /* Pricing hint */
+    .pricing-section {
+      background: var(--bg-white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+    }
+
+    .pricing-header {
+      padding: 36px 40px 28px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .pricing-tiers {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .pricing-tier {
+      padding: 32px 28px;
+      border-right: 1px solid var(--border);
+    }
+
+    .pricing-tier:last-child {
+      border-right: none;
+    }
+
+    .pricing-tier.featured-tier {
+      background: var(--accent-dim);
+      border-color: var(--accent-border);
+    }
+
+    .tier-name {
+      font-size: 12px;
+      font-family: 'Geist Mono', monospace;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 14px;
+    }
+
+    .tier-price {
+      font-family: 'Instrument Serif', serif;
+      font-size: 40px;
+      font-weight: 400;
+      letter-spacing: -0.04em;
+      color: var(--fg);
+      line-height: 1;
+    }
+
+    .tier-price sup {
+      font-size: 20px;
+      vertical-align: super;
+      font-family: 'Geist', sans-serif;
+      font-weight: 500;
+    }
+
+    .tier-period {
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: 5px;
+      margin-bottom: 20px;
+    }
+
+    .tier-features {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .tier-features li {
+      font-size: 13px;
+      color: var(--muted);
+      display: flex;
+      align-items: center;
+      gap: 7px;
+    }
+
+    .tier-features li::before {
+      content: '✓';
+      color: var(--accent);
+      font-weight: 700;
+      font-size: 12px;
+    }
+
+    @media (max-width: 900px) {
+      .services-big-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .pricing-tiers {
+        grid-template-columns: 1fr;
+      }
+
+      .pricing-tier {
+        border-right: none;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .pricing-tier:last-child {
+        border-bottom: none;
+      }
+    }
+  </style>
 </head>
+
 <body>
-<div class="grid-bg">
-  <div class="grid-lines"></div>
-  <div class="grid-dots"></div>
-  <div class="grid-fade"></div>
-  <div class="grid-star primary" style="top: calc(var(--grid-sz)*0 - 15px); right: calc(var(--grid-sz)*0 - 15px);">
-    <svg class="star-svg large" viewBox="0 0 30 30" fill="none">
-      <path d="M15 0 C15 0 16.2 13 17 15 C18 17 30 15 30 15 C30 15 17 16.2 15 17 C13 18 15 30 15 30 C15 30 13.8 17 13 15 C12 13 0 15 0 15 C0 15 13 13.8 15 13 C17 12 15 0 15 0Z" fill="#e8541e"/>
-    </svg>
+  <div class="grid-bg">
+    <div class="grid-lines"></div>
+    <div class="grid-dots"></div>
+    <div class="grid-fade"></div>
+    <!-- Gradient blobs from Figma design system -->
+    <div class="grad-blob grad-blob-1"></div>
+    <div class="grad-blob grad-blob-2"></div>
+    <div class="grad-blob grad-blob-3"></div>
+
+    <div style="position:absolute; bottom: 100px; right: 44px; opacity:0.3;">
+      <svg width="68" height="68" viewBox="0 0 68 68">
+        <g fill="rgba(0,0,0,0.3)">
+          <circle cx="4" cy="4" r="2" />
+          <circle cx="16" cy="4" r="2" />
+          <circle cx="28" cy="4" r="2" />
+          <circle cx="40" cy="4" r="2" />
+          <circle cx="52" cy="4" r="2" />
+          <circle cx="64" cy="4" r="2" />
+          <circle cx="4" cy="16" r="2" />
+          <circle cx="16" cy="16" r="2" />
+          <circle cx="28" cy="16" r="2" />
+          <circle cx="40" cy="16" r="2" />
+          <circle cx="52" cy="16" r="2" />
+          <circle cx="64" cy="16" r="2" />
+          <circle cx="4" cy="28" r="2" />
+          <circle cx="16" cy="28" r="2" />
+          <circle cx="28" cy="28" r="2" />
+          <circle cx="40" cy="28" r="2" />
+          <circle cx="52" cy="28" r="2" />
+          <circle cx="64" cy="28" r="2" />
+          <circle cx="4" cy="40" r="2" />
+          <circle cx="16" cy="40" r="2" />
+          <circle cx="28" cy="40" r="2" />
+          <circle cx="40" cy="40" r="2" />
+          <circle cx="52" cy="40" r="2" />
+          <circle cx="64" cy="40" r="2" />
+          <circle cx="4" cy="52" r="2" />
+          <circle cx="16" cy="52" r="2" />
+          <circle cx="28" cy="52" r="2" />
+          <circle cx="40" cy="52" r="2" />
+          <circle cx="52" cy="52" r="2" />
+          <circle cx="64" cy="52" r="2" />
+        </g>
+      </svg>
+    </div>
   </div>
-  <div class="grid-star secondary" style="top: calc(var(--grid-sz)*5 - 9px); left: calc(var(--grid-sz)*1 - 9px); opacity:0.35; animation-delay:1s;">
-    <svg class="star-svg small" viewBox="0 0 30 30" fill="none">
-      <path d="M15 0 C15 0 16.2 13 17 15 C18 17 30 15 30 15 C30 15 17 16.2 15 17 C13 18 15 30 15 30 C15 30 13.8 17 13 15 C12 13 0 15 0 15 C0 15 13 13.8 15 13 C17 12 15 0 15 0Z" fill="#999993"/>
-    </svg>
+
+  <div class="page">
+    <nav class="nav">
+      <a class="nav-logo" href="index.html">
+        <img src="assets/brand/solvingclub-logo.png" alt="Solving Club logo">
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="services.html" class="active">Services</a></li>
+        <li><a href="work.html">Our Work</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+      <div class="nav-right">
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="5" />
+            <line x1="12" y1="1" x2="12" y2="3" />
+            <line x1="12" y1="21" x2="12" y2="23" />
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+            <line x1="1" y1="12" x2="3" y2="12" />
+            <line x1="21" y1="12" x2="23" y2="12" />
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+          </svg>
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+          </svg>
+        </button>
+        <a href="contact.html" class="btn btn-ghost btn-sm">Get in touch</a>
+        <a href="contact.html" class="btn btn-accent btn-sm">Start a project →</a>
+      </div>
+    </nav>
+
+    <section class="services-hero">
+      <div class="container">
+        <div class="eyebrow" style="justify-content:center;">What we offer</div>
+        <h1 class="display-xl" style="animation:fade-up 0.65s ease both;">Services built<br>to <em>ship</em></h1>
+        <p class="body-lg" style="max-width:440px;margin:18px auto 0;animation:fade-up 0.65s 0.1s ease both;">
+          We cover the full stack of digital product development — from brand to backend.
+        </p>
+      </div>
+    </section>
+
+    <div class="divider-full"></div>
+
+    <section class="section">
+      <div class="container">
+        <div class="services-big-grid">
+
+          <div class="svc-card featured reveal">
+            <div class="svc-num">01</div>
+            <div class="svc-icon-wrap">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <rect x="2" y="2" width="8" height="8" rx="2" stroke="currentColor" stroke-width="1.5" />
+                <rect x="14" y="2" width="8" height="8" rx="2" stroke="currentColor" stroke-width="1.5" />
+                <rect x="2" y="14" width="8" height="8" rx="2" stroke="currentColor" stroke-width="1.5" />
+                <rect x="14" y="14" width="8" height="8" rx="2" stroke="currentColor" stroke-width="1.5" />
+              </svg>
+            </div>
+            <div class="svc-name">UI/UX Design</div>
+            <p class="svc-desc">We design interfaces people genuinely love — grounded in user research, informed by
+              data, and crafted with obsessive attention to detail.</p>
+            <div class="svc-includes">
+              <div class="svc-include-item">User research & journey mapping</div>
+              <div class="svc-include-item">Wireframing & interactive prototypes</div>
+              <div class="svc-include-item">Full design system & component library</div>
+              <div class="svc-include-item">Accessibility & usability reviews</div>
+            </div>
+            <div class="svc-tech-pills">
+              <span class="tag tag-muted">Figma</span>
+              <span class="tag tag-muted">Storybook</span>
+              <span class="tag tag-muted">FigJam</span>
+              <span class="tag tag-muted">Maze</span>
+            </div>
+          </div>
+
+          <div class="svc-card reveal reveal-d2">
+            <div class="svc-num">02</div>
+            <div class="svc-icon-wrap">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <path d="M7 9L3 12l4 3M17 9l4 3-4 3M13 6l-2 12" stroke="currentColor" stroke-width="1.5"
+                  stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </div>
+            <div class="svc-name">Web Development</div>
+            <p class="svc-desc">Fast, scalable web applications built with battle-tested modern frameworks. We write
+              clean, tested, maintainable code you'll be proud to own.</p>
+            <div class="svc-includes">
+              <div class="svc-include-item">React / Next.js web applications</div>
+              <div class="svc-include-item">Node.js API & backend services</div>
+              <div class="svc-include-item">Database design & optimization</div>
+              <div class="svc-include-item">CI/CD & deployment pipelines</div>
+            </div>
+            <div class="svc-tech-pills">
+              <span class="tag tag-muted">Next.js</span>
+              <span class="tag tag-muted">TypeScript</span>
+              <span class="tag tag-muted">Node.js</span>
+              <span class="tag tag-muted">PostgreSQL</span>
+            </div>
+          </div>
+
+          <div class="svc-card reveal">
+            <div class="svc-num">03</div>
+            <div class="svc-icon-wrap">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <path d="M12 2L14.5 9.5L22 12L14.5 14.5L12 22L9.5 14.5L2 12L9.5 9.5L12 2Z" stroke="currentColor"
+                  stroke-width="1.5" stroke-linejoin="round" />
+              </svg>
+            </div>
+            <div class="svc-name">Brand Identity</div>
+            <p class="svc-desc">Logos, typography, colour systems, and brand guidelines that make you instantly
+              recognisable — and impossible to forget.</p>
+            <div class="svc-includes">
+              <div class="svc-include-item">Logo design & wordmark</div>
+              <div class="svc-include-item">Brand guidelines & voice</div>
+              <div class="svc-include-item">Colour & typography system</div>
+              <div class="svc-include-item">Marketing & social templates</div>
+            </div>
+            <div class="svc-tech-pills">
+              <span class="tag tag-muted">Figma</span>
+              <span class="tag tag-muted">Illustrator</span>
+              <span class="tag tag-muted">Framer</span>
+            </div>
+          </div>
+
+          <div class="svc-card reveal reveal-d2">
+            <div class="svc-num">04</div>
+            <div class="svc-icon-wrap">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <rect x="5" y="2" width="14" height="20" rx="3" stroke="currentColor" stroke-width="1.5" />
+                <circle cx="12" cy="18" r="1.5" fill="currentColor" />
+              </svg>
+            </div>
+            <div class="svc-name">Mobile Apps</div>
+            <p class="svc-desc">Cross-platform mobile applications that feel native. We ship to both App Store and
+              Google Play — fast, polished, and built to scale.</p>
+            <div class="svc-includes">
+              <div class="svc-include-item">React Native iOS & Android</div>
+              <div class="svc-include-item">Offline-first architecture</div>
+              <div class="svc-include-item">Push notifications & analytics</div>
+              <div class="svc-include-item">App Store & Play Store submission</div>
+            </div>
+            <div class="svc-tech-pills">
+              <span class="tag tag-muted">React Native</span>
+              <span class="tag tag-muted">Expo</span>
+              <span class="tag tag-muted">Firebase</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <div class="divider-full"></div>
+
+    <!-- Pricing -->
+    <section class="section">
+      <div class="container">
+        <div class="reveal"
+          style="text-align:center;display:flex;flex-direction:column;align-items:center;margin-bottom:48px;">
+          <div class="eyebrow">Pricing</div>
+          <h2 class="display-lg">Simple, <em>honest</em> pricing</h2>
+          <p class="body-md" style="max-width:380px;margin-top:14px;">No surprises. No hidden fees. Just clear value for
+            the work we do.</p>
+        </div>
+
+        <div class="pricing-section reveal reveal-d1">
+          <div class="pricing-header">
+            <h3 class="display-md" style="font-size:22px;">Choose how you want to work with us</h3>
+          </div>
+          <div class="pricing-tiers">
+            <div class="pricing-tier">
+              <div class="tier-name">Starter</div>
+              <div class="tier-price"><sup>$</sup>4,500</div>
+              <div class="tier-period">One-time project</div>
+              <ul class="tier-features">
+                <li>Landing page or microsite</li>
+                <li>Design + development</li>
+                <li>2 rounds of revisions</li>
+                <li>2 week delivery</li>
+              </ul>
+            </div>
+            <div class="pricing-tier featured-tier">
+              <div class="tier-name">Growth</div>
+              <div class="tier-price"><sup>$</sup>12,000</div>
+              <div class="tier-period">Full product build</div>
+              <ul class="tier-features">
+                <li>Full web app or mobile app</li>
+                <li>Design system included</li>
+                <li>Backend & API</li>
+                <li>6–10 week delivery</li>
+                <li>30 days post-launch support</li>
+              </ul>
+            </div>
+            <div class="pricing-tier">
+              <div class="tier-name">Retainer</div>
+              <div class="tier-price"><sup>$</sup>4,000</div>
+              <div class="tier-period">Per month</div>
+              <ul class="tier-features">
+                <li>Ongoing design & dev</li>
+                <li>40 hrs/month</li>
+                <li>Weekly syncs</li>
+                <li>Priority response</li>
+                <li>Cancel anytime</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider-full"></div>
+    <section class="section-sm">
+      <div class="container">
+        <div class="cta-dark reveal">
+          <div class="cta-dark-grid"></div>
+          <div class="cta-dark-glow"></div>
+
+          <div
+            style="position:relative;z-index:1;text-align:center;display:flex;flex-direction:column;align-items:center;padding:20px 0;">
+            <h2 class="cta-title" style="font-size:clamp(26px,4vw,48px);">Not sure what you <em>need?</em></h2>
+            <p class="cta-sub">Book a free 30-min discovery call. We'll figure it out together.</p>
+            <div class="cta-btns">
+              <a href="contact.html" class="btn btn-white btn-lg">Book a call →</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider-full"></div>
+    <footer>
+      <div class="container">
+        <div class="footer-inner">
+          <a class="footer-logo" href="index.html">
+            <img src="assets/brand/solvingclub-logo.png" alt="Solving Club logo">
+          </a>
+          <ul class="footer-nav">
+            <li><a href="services.html">Services</a></li>
+            <li><a href="work.html">Work</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+          <div class="footer-socials">
+            <a class="footer-social-btn" href="#">𝕏</a>
+            <a class="footer-social-btn" href="#">in</a>
+            <a class="footer-social-btn" href="#" style="font-size:11px;">GH</a>
+          </div>
+        </div>
+      </div>
+    </footer>
   </div>
-  <div style="position:absolute; bottom: 100px; right: 44px; opacity:0.3;">
-    <svg width="68" height="68" viewBox="0 0 68 68">
-      <g fill="rgba(0,0,0,0.3)">
-        <circle cx="4" cy="4" r="2"/><circle cx="16" cy="4" r="2"/><circle cx="28" cy="4" r="2"/><circle cx="40" cy="4" r="2"/><circle cx="52" cy="4" r="2"/><circle cx="64" cy="4" r="2"/>
-        <circle cx="4" cy="16" r="2"/><circle cx="16" cy="16" r="2"/><circle cx="28" cy="16" r="2"/><circle cx="40" cy="16" r="2"/><circle cx="52" cy="16" r="2"/><circle cx="64" cy="16" r="2"/>
-        <circle cx="4" cy="28" r="2"/><circle cx="16" cy="28" r="2"/><circle cx="28" cy="28" r="2"/><circle cx="40" cy="28" r="2"/><circle cx="52" cy="28" r="2"/><circle cx="64" cy="28" r="2"/>
-        <circle cx="4" cy="40" r="2"/><circle cx="16" cy="40" r="2"/><circle cx="28" cy="40" r="2"/><circle cx="40" cy="40" r="2"/><circle cx="52" cy="40" r="2"/><circle cx="64" cy="40" r="2"/>
-        <circle cx="4" cy="52" r="2"/><circle cx="16" cy="52" r="2"/><circle cx="28" cy="52" r="2"/><circle cx="40" cy="52" r="2"/><circle cx="52" cy="52" r="2"/><circle cx="64" cy="52" r="2"/>
-      </g>
-    </svg>
-  </div>
-</div>
-
-<div class="page">
-  <nav class="nav">
-    <a class="nav-logo" href="index.html">
-      <img src="solving-club-high-resolution-logo-transparent.png" alt="Solving Club logo">
-    </a>
-    <ul class="nav-links">
-      <li><a href="index.html">Home</a></li>
-      <li><a href="services.html" class="active">Services</a></li>
-      <li><a href="work.html">Our Work</a></li>
-      <li><a href="about.html">About</a></li>
-      <li><a href="contact.html">Contact</a></li>
-    </ul>
-    <div class="nav-right">
-      <a href="contact.html" class="btn btn-ghost btn-sm">Get in touch</a>
-      <a href="contact.html" class="btn btn-accent btn-sm">Start a project →</a>
-    </div>
-  </nav>
-
-  <section class="services-hero">
-    <div class="container">
-      <div class="eyebrow" style="justify-content:center;">What we offer</div>
-      <h1 class="display-xl" style="animation:fade-up 0.65s ease both;">Services built<br>to <em>ship</em></h1>
-      <p class="body-lg" style="max-width:440px;margin:18px auto 0;animation:fade-up 0.65s 0.1s ease both;">
-        We cover the full stack of digital product development — from brand to backend.
-      </p>
-    </div>
-  </section>
-
-  <div class="divider-full"></div>
-
-  <section class="section">
-    <div class="container">
-      <div class="services-big-grid">
-
-        <div class="svc-card featured reveal">
-          <div class="svc-num">01</div>
-          <div class="svc-icon-wrap">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="8" height="8" rx="2" stroke="currentColor" stroke-width="1.5"/><rect x="14" y="2" width="8" height="8" rx="2" stroke="currentColor" stroke-width="1.5"/><rect x="2" y="14" width="8" height="8" rx="2" stroke="currentColor" stroke-width="1.5"/><rect x="14" y="14" width="8" height="8" rx="2" stroke="currentColor" stroke-width="1.5"/></svg>
-          </div>
-          <div class="svc-name">UI/UX Design</div>
-          <p class="svc-desc">We design interfaces people genuinely love — grounded in user research, informed by data, and crafted with obsessive attention to detail.</p>
-          <div class="svc-includes">
-            <div class="svc-include-item">User research & journey mapping</div>
-            <div class="svc-include-item">Wireframing & interactive prototypes</div>
-            <div class="svc-include-item">Full design system & component library</div>
-            <div class="svc-include-item">Accessibility & usability reviews</div>
-          </div>
-          <div class="svc-tech-pills">
-            <span class="tag tag-muted">Figma</span>
-            <span class="tag tag-muted">Storybook</span>
-            <span class="tag tag-muted">FigJam</span>
-            <span class="tag tag-muted">Maze</span>
-          </div>
-        </div>
-
-        <div class="svc-card reveal reveal-d2">
-          <div class="svc-num">02</div>
-          <div class="svc-icon-wrap">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M7 9L3 12l4 3M17 9l4 3-4 3M13 6l-2 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </div>
-          <div class="svc-name">Web Development</div>
-          <p class="svc-desc">Fast, scalable web applications built with battle-tested modern frameworks. We write clean, tested, maintainable code you'll be proud to own.</p>
-          <div class="svc-includes">
-            <div class="svc-include-item">React / Next.js web applications</div>
-            <div class="svc-include-item">Node.js API & backend services</div>
-            <div class="svc-include-item">Database design & optimization</div>
-            <div class="svc-include-item">CI/CD & deployment pipelines</div>
-          </div>
-          <div class="svc-tech-pills">
-            <span class="tag tag-muted">Next.js</span>
-            <span class="tag tag-muted">TypeScript</span>
-            <span class="tag tag-muted">Node.js</span>
-            <span class="tag tag-muted">PostgreSQL</span>
-          </div>
-        </div>
-
-        <div class="svc-card reveal">
-          <div class="svc-num">03</div>
-          <div class="svc-icon-wrap">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M12 2L14.5 9.5L22 12L14.5 14.5L12 22L9.5 14.5L2 12L9.5 9.5L12 2Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
-          </div>
-          <div class="svc-name">Brand Identity</div>
-          <p class="svc-desc">Logos, typography, colour systems, and brand guidelines that make you instantly recognisable — and impossible to forget.</p>
-          <div class="svc-includes">
-            <div class="svc-include-item">Logo design & wordmark</div>
-            <div class="svc-include-item">Brand guidelines & voice</div>
-            <div class="svc-include-item">Colour & typography system</div>
-            <div class="svc-include-item">Marketing & social templates</div>
-          </div>
-          <div class="svc-tech-pills">
-            <span class="tag tag-muted">Figma</span>
-            <span class="tag tag-muted">Illustrator</span>
-            <span class="tag tag-muted">Framer</span>
-          </div>
-        </div>
-
-        <div class="svc-card reveal reveal-d2">
-          <div class="svc-num">04</div>
-          <div class="svc-icon-wrap">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><rect x="5" y="2" width="14" height="20" rx="3" stroke="currentColor" stroke-width="1.5"/><circle cx="12" cy="18" r="1.5" fill="currentColor"/></svg>
-          </div>
-          <div class="svc-name">Mobile Apps</div>
-          <p class="svc-desc">Cross-platform mobile applications that feel native. We ship to both App Store and Google Play — fast, polished, and built to scale.</p>
-          <div class="svc-includes">
-            <div class="svc-include-item">React Native iOS & Android</div>
-            <div class="svc-include-item">Offline-first architecture</div>
-            <div class="svc-include-item">Push notifications & analytics</div>
-            <div class="svc-include-item">App Store & Play Store submission</div>
-          </div>
-          <div class="svc-tech-pills">
-            <span class="tag tag-muted">React Native</span>
-            <span class="tag tag-muted">Expo</span>
-            <span class="tag tag-muted">Firebase</span>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <div class="divider-full"></div>
-
-  <!-- Pricing -->
-  <section class="section">
-    <div class="container">
-      <div class="reveal" style="text-align:center;display:flex;flex-direction:column;align-items:center;margin-bottom:48px;">
-        <div class="eyebrow">Pricing</div>
-        <h2 class="display-lg">Simple, <em>honest</em> pricing</h2>
-        <p class="body-md" style="max-width:380px;margin-top:14px;">No surprises. No hidden fees. Just clear value for the work we do.</p>
-      </div>
-
-      <div class="pricing-section reveal reveal-d1">
-        <div class="pricing-header">
-          <h3 class="display-md" style="font-size:22px;">Choose how you want to work with us</h3>
-        </div>
-        <div class="pricing-tiers">
-          <div class="pricing-tier">
-            <div class="tier-name">Starter</div>
-            <div class="tier-price"><sup>$</sup>4,500</div>
-            <div class="tier-period">One-time project</div>
-            <ul class="tier-features">
-              <li>Landing page or microsite</li>
-              <li>Design + development</li>
-              <li>2 rounds of revisions</li>
-              <li>2 week delivery</li>
-            </ul>
-          </div>
-          <div class="pricing-tier featured-tier">
-            <div class="tier-name">Growth</div>
-            <div class="tier-price"><sup>$</sup>12,000</div>
-            <div class="tier-period">Full product build</div>
-            <ul class="tier-features">
-              <li>Full web app or mobile app</li>
-              <li>Design system included</li>
-              <li>Backend & API</li>
-              <li>6–10 week delivery</li>
-              <li>30 days post-launch support</li>
-            </ul>
-          </div>
-          <div class="pricing-tier">
-            <div class="tier-name">Retainer</div>
-            <div class="tier-price"><sup>$</sup>4,000</div>
-            <div class="tier-period">Per month</div>
-            <ul class="tier-features">
-              <li>Ongoing design & dev</li>
-              <li>40 hrs/month</li>
-              <li>Weekly syncs</li>
-              <li>Priority response</li>
-              <li>Cancel anytime</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <div class="divider-full"></div>
-  <section class="section-sm">
-    <div class="container">
-      <div class="cta-dark reveal">
-        <div class="cta-dark-grid"></div>
-        <div class="cta-dark-glow"></div>
-        <div class="grid-star primary" style="position:absolute;top:-1px;right:-1px;">
-          <svg class="star-svg large" viewBox="0 0 30 30" fill="none"><path d="M15 0 C15 0 16.2 13 17 15 C18 17 30 15 30 15 C30 15 17 16.2 15 17 C13 18 15 30 15 30 C15 30 13.8 17 13 15 C12 13 0 15 0 15 C0 15 13 13.8 15 13 C17 12 15 0 15 0Z" fill="#e8541e"/></svg>
-        </div>
-        <div style="position:relative;z-index:1;text-align:center;display:flex;flex-direction:column;align-items:center;padding:20px 0;">
-          <h2 class="cta-title" style="font-size:clamp(26px,4vw,48px);">Not sure what you <em>need?</em></h2>
-          <p class="cta-sub">Book a free 30-min discovery call. We'll figure it out together.</p>
-          <div class="cta-btns">
-            <a href="contact.html" class="btn btn-white btn-lg">Book a call →</a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <div class="divider-full"></div>
-  <footer>
-    <div class="container">
-      <div class="footer-inner">
-        <a class="footer-logo" href="index.html">
-          <img src="solving-club-high-resolution-logo-transparent.png" alt="Solving Club logo">
-        </a>
-        <ul class="footer-nav">
-          <li><a href="services.html">Services</a></li>
-          <li><a href="work.html">Work</a></li>
-          <li><a href="about.html">About</a></li>
-          <li><a href="contact.html">Contact</a></li>
-        </ul>
-        <div class="footer-socials">
-          <a class="footer-social-btn" href="#">𝕏</a>
-          <a class="footer-social-btn" href="#">in</a>
-          <a class="footer-social-btn" href="#" style="font-size:11px;">GH</a>
-        </div>
-      </div>
-    </div>
-  </footer>
-</div>
-<script src="main.js"></script>
+  <script src="main.js"></script>
 </body>
+
 </html>

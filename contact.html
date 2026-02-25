@@ -1,362 +1,506 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Contact — SolvingClub</title>
-<link rel="stylesheet" href="style.css">
-<style>
-.contact-wrap {
-  display: grid;
-  grid-template-columns: 1fr 1.1fr;
-  gap: 72px;
-  align-items: start;
-  padding: 90px 0 100px;
-}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact — SolvingClub</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .contact-wrap {
+      display: grid;
+      grid-template-columns: 1fr 1.1fr;
+      gap: 72px;
+      align-items: start;
+      padding: 90px 0 100px;
+    }
 
-.contact-info { position: sticky; top: 90px; }
+    .contact-info {
+      position: sticky;
+      top: 90px;
+    }
 
-.info-card {
-  background: var(--bg-white);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-xl);
-  overflow: hidden;
-  margin-top: 32px;
-}
-.info-row {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  padding: 18px 22px;
-  border-bottom: 1px solid var(--border);
-  text-decoration: none;
-  color: inherit;
-  transition: background 0.15s;
-}
-.info-row:last-child { border-bottom: none; }
-.info-row:hover { background: var(--accent-dim); }
+    .info-card {
+      background: var(--bg-white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      margin-top: 32px;
+    }
 
-.info-icon {
-  width: 36px; height: 36px;
-  border-radius: 9px;
-  background: var(--accent-dim);
-  border: 1px solid var(--accent-border);
-  display: flex; align-items: center; justify-content: center;
-  color: var(--accent);
-  flex-shrink: 0;
-}
-.info-label { font-size: 11px; font-family: 'Geist Mono', monospace; color: var(--muted-2); letter-spacing: 0.05em; }
-.info-value { font-size: 14px; font-weight: 500; color: var(--fg); margin-top: 1px; }
-.info-arrow { margin-left: auto; color: var(--muted-2); font-size: 16px; }
+    .info-row {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 18px 22px;
+      border-bottom: 1px solid var(--border);
+      text-decoration: none;
+      color: inherit;
+      transition: background 0.15s;
+    }
 
-.avail-badge {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  background: rgba(34,197,94,0.08);
-  border: 1px solid rgba(34,197,94,0.2);
-  border-radius: var(--radius-md);
-  padding: 12px 16px;
-  margin-top: 14px;
-  font-size: 13px;
-  color: #16a34a;
-}
-.avail-dot {
-  width: 8px; height: 8px;
-  border-radius: 50%;
-  background: #22c55e;
-  position: relative;
-  flex-shrink: 0;
-}
-.avail-dot::after {
-  content: '';
-  position: absolute; inset: -3px;
-  border-radius: 50%;
-  background: #22c55e;
-  opacity: 0.25;
-  animation: ripple 2s ease infinite;
-}
+    .info-row:last-child {
+      border-bottom: none;
+    }
 
-/* Form */
-.form-card {
-  background: var(--bg-white);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-xl);
-  padding: 40px;
-}
+    .info-row:hover {
+      background: var(--accent-dim);
+    }
 
-.form-header { margin-bottom: 28px; }
-.form-title { font-family: 'Instrument Serif', serif; font-size: 30px; font-weight: 400; letter-spacing: -0.02em; }
-.form-sub { font-size: 14px; color: var(--muted); margin-top: 6px; }
+    .info-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 9px;
+      background: var(--accent-dim);
+      border: 1px solid var(--accent-border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--accent);
+      flex-shrink: 0;
+    }
 
-.fgroup { margin-bottom: 16px; }
-label {
-  display: block;
-  font-family: 'Geist Mono', monospace;
-  font-size: 11px;
-  font-weight: 500;
-  letter-spacing: 0.07em;
-  text-transform: uppercase;
-  color: var(--muted);
-  margin-bottom: 7px;
-}
-input, textarea, select {
-  width: 100%;
-  font-family: 'Geist', sans-serif;
-  font-size: 14px;
-  color: var(--fg);
-  background: var(--bg);
-  border: 1px solid var(--border-med);
-  border-radius: var(--radius-sm);
-  padding: 12px 14px;
-  outline: none;
-  transition: border-color 0.16s, box-shadow 0.16s, background 0.16s;
-  -webkit-appearance: none;
-}
-input:focus, textarea:focus, select:focus {
-  background: var(--bg-white);
-  border-color: rgba(232,84,30,0.45);
-  box-shadow: 0 0 0 3.5px rgba(232,84,30,0.09);
-}
-textarea { resize: none; min-height: 130px; }
-.frow { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .info-label {
+      font-size: 11px;
+      font-family: 'Geist Mono', monospace;
+      color: var(--muted-2);
+      letter-spacing: 0.05em;
+    }
 
-.budget-options { display: flex; flex-wrap: wrap; gap: 7px; }
-.budget-opt {
-  font-family: 'Geist Mono', monospace;
-  font-size: 12px;
-  padding: 7px 14px;
-  border: 1px solid var(--border-med);
-  border-radius: 100px;
-  background: var(--bg);
-  color: var(--muted);
-  cursor: pointer;
-  transition: all 0.14s;
-}
-.budget-opt:hover, .budget-opt.sel {
-  background: var(--accent-dim);
-  border-color: var(--accent-border);
-  color: var(--accent);
-}
+    .info-value {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--fg);
+      margin-top: 1px;
+    }
 
-.submit-btn {
-  width: 100%;
-  display: flex; align-items: center; justify-content: center; gap: 8px;
-  background: var(--accent);
-  color: white;
-  font-family: 'Geist', sans-serif;
-  font-size: 14.5px;
-  font-weight: 500;
-  border: none;
-  border-radius: var(--radius-md);
-  padding: 14px;
-  cursor: pointer;
-  margin-top: 6px;
-  transition: all 0.18s;
-}
-.submit-btn:hover { background: #c94318; transform: translateY(-1px); box-shadow: 0 8px 28px var(--accent-glow); }
+    .info-arrow {
+      margin-left: auto;
+      color: var(--muted-2);
+      font-size: 16px;
+    }
 
-@media (max-width: 900px) {
-  .contact-wrap { grid-template-columns: 1fr; padding: 64px 0; }
-  .contact-info { position: static; }
-  .frow { grid-template-columns: 1fr; }
-}
-</style>
+    .avail-badge {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(34, 197, 94, 0.08);
+      border: 1px solid rgba(34, 197, 94, 0.2);
+      border-radius: var(--radius-md);
+      padding: 12px 16px;
+      margin-top: 14px;
+      font-size: 13px;
+      color: #16a34a;
+    }
+
+    .avail-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #22c55e;
+      position: relative;
+      flex-shrink: 0;
+    }
+
+    .avail-dot::after {
+      content: '';
+      position: absolute;
+      inset: -3px;
+      border-radius: 50%;
+      background: #22c55e;
+      opacity: 0.25;
+      animation: ripple 2s ease infinite;
+    }
+
+    /* Form */
+    .form-card {
+      background: var(--bg-white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-xl);
+      padding: 40px;
+    }
+
+    .form-header {
+      margin-bottom: 28px;
+    }
+
+    .form-title {
+      font-family: 'Instrument Serif', serif;
+      font-size: 30px;
+      font-weight: 400;
+      letter-spacing: -0.02em;
+    }
+
+    .form-sub {
+      font-size: 14px;
+      color: var(--muted);
+      margin-top: 6px;
+    }
+
+    .fgroup {
+      margin-bottom: 16px;
+    }
+
+    label {
+      display: block;
+      font-family: 'Geist Mono', monospace;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 7px;
+    }
+
+    input,
+    textarea,
+    select {
+      width: 100%;
+      font-family: 'Geist', sans-serif;
+      font-size: 14px;
+      color: var(--fg);
+      background: var(--bg);
+      border: 1px solid var(--border-med);
+      border-radius: var(--radius-sm);
+      padding: 12px 14px;
+      outline: none;
+      transition: border-color 0.16s, box-shadow 0.16s, background 0.16s;
+      -webkit-appearance: none;
+    }
+
+    input:focus,
+    textarea:focus,
+    select:focus {
+      background: var(--bg-white);
+      border-color: rgba(232, 84, 30, 0.45);
+      box-shadow: 0 0 0 3.5px rgba(232, 84, 30, 0.09);
+    }
+
+    textarea {
+      resize: none;
+      min-height: 130px;
+    }
+
+    .frow {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .budget-options {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+    }
+
+    .budget-opt {
+      font-family: 'Geist Mono', monospace;
+      font-size: 12px;
+      padding: 7px 14px;
+      border: 1px solid var(--border-med);
+      border-radius: 100px;
+      background: var(--bg);
+      color: var(--muted);
+      cursor: pointer;
+      transition: all 0.14s;
+    }
+
+    .budget-opt:hover,
+    .budget-opt.sel {
+      background: var(--accent-dim);
+      border-color: var(--accent-border);
+      color: var(--accent);
+    }
+
+    .submit-btn {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background: var(--accent);
+      color: white;
+      font-family: 'Geist', sans-serif;
+      font-size: 14.5px;
+      font-weight: 500;
+      border: none;
+      border-radius: var(--radius-md);
+      padding: 14px;
+      cursor: pointer;
+      margin-top: 6px;
+      transition: all 0.18s;
+    }
+
+    .submit-btn:hover {
+      background: #c94318;
+      transform: translateY(-1px);
+      box-shadow: 0 8px 28px var(--accent-glow);
+    }
+
+    @media (max-width: 900px) {
+      .contact-wrap {
+        grid-template-columns: 1fr;
+        padding: 64px 0;
+      }
+
+      .contact-info {
+        position: static;
+      }
+
+      .frow {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
 </head>
+
 <body>
-<div class="grid-bg">
-  <div class="grid-lines"></div>
-  <div class="grid-dots"></div>
-  <div class="grid-fade"></div>
-  <div class="grid-star primary" style="top: calc(var(--grid-sz)*0 - 15px); right: calc(var(--grid-sz)*0 - 15px);">
-    <svg class="star-svg large" viewBox="0 0 30 30" fill="none">
-      <path d="M15 0 C15 0 16.2 13 17 15 C18 17 30 15 30 15 C30 15 17 16.2 15 17 C13 18 15 30 15 30 C15 30 13.8 17 13 15 C12 13 0 15 0 15 C0 15 13 13.8 15 13 C17 12 15 0 15 0Z" fill="#e8541e"/>
-    </svg>
-  </div>
-  <div class="grid-star secondary" style="bottom: calc(var(--grid-sz)*3 - 9px); left: calc(var(--grid-sz)*2 - 9px); opacity:0.3; animation-delay:2.5s;">
-    <svg class="star-svg small" viewBox="0 0 30 30" fill="none">
-      <path d="M15 0 C15 0 16.2 13 17 15 C18 17 30 15 30 15 C30 15 17 16.2 15 17 C13 18 15 30 15 30 C15 30 13.8 17 13 15 C12 13 0 15 0 15 C0 15 13 13.8 15 13 C17 12 15 0 15 0Z" fill="#999993"/>
-    </svg>
-  </div>
-  <div style="position:absolute; bottom: 80px; right: 44px; opacity:0.28;">
-    <svg width="68" height="56" viewBox="0 0 68 56">
-      <g fill="rgba(0,0,0,0.3)">
-        <circle cx="4" cy="4" r="2"/><circle cx="16" cy="4" r="2"/><circle cx="28" cy="4" r="2"/><circle cx="40" cy="4" r="2"/><circle cx="52" cy="4" r="2"/><circle cx="64" cy="4" r="2"/>
-        <circle cx="4" cy="16" r="2"/><circle cx="16" cy="16" r="2"/><circle cx="28" cy="16" r="2"/><circle cx="40" cy="16" r="2"/><circle cx="52" cy="16" r="2"/><circle cx="64" cy="16" r="2"/>
-        <circle cx="4" cy="28" r="2"/><circle cx="16" cy="28" r="2"/><circle cx="28" cy="28" r="2"/><circle cx="40" cy="28" r="2"/><circle cx="52" cy="28" r="2"/><circle cx="64" cy="28" r="2"/>
-        <circle cx="4" cy="40" r="2"/><circle cx="16" cy="40" r="2"/><circle cx="28" cy="40" r="2"/><circle cx="40" cy="40" r="2"/><circle cx="52" cy="40" r="2"/><circle cx="64" cy="40" r="2"/>
-      </g>
-    </svg>
-  </div>
-</div>
+  <div class="grid-bg">
+    <div class="grid-lines"></div>
+    <div class="grid-dots"></div>
+    <div class="grid-fade"></div>
+    <!-- Gradient blobs from Figma design system -->
+    <div class="grad-blob grad-blob-1"></div>
+    <div class="grad-blob grad-blob-2"></div>
+    <div class="grad-blob grad-blob-3"></div>
 
-<div class="page">
-  <nav class="nav">
-    <a class="nav-logo" href="index.html">
-      <img src="solving-club-high-resolution-logo-transparent.png" alt="Solving Club logo">
-    </a>
-    <ul class="nav-links">
-      <li><a href="index.html">Home</a></li>
-      <li><a href="services.html">Services</a></li>
-      <li><a href="work.html">Our Work</a></li>
-      <li><a href="about.html">About</a></li>
-      <li><a href="contact.html" class="active">Contact</a></li>
-    </ul>
-    <div class="nav-right">
-      <a href="work.html" class="btn btn-ghost btn-sm">See our work</a>
+    <div style="position:absolute; bottom: 80px; right: 44px; opacity:0.28;">
+      <svg width="68" height="56" viewBox="0 0 68 56">
+        <g fill="rgba(0,0,0,0.3)">
+          <circle cx="4" cy="4" r="2" />
+          <circle cx="16" cy="4" r="2" />
+          <circle cx="28" cy="4" r="2" />
+          <circle cx="40" cy="4" r="2" />
+          <circle cx="52" cy="4" r="2" />
+          <circle cx="64" cy="4" r="2" />
+          <circle cx="4" cy="16" r="2" />
+          <circle cx="16" cy="16" r="2" />
+          <circle cx="28" cy="16" r="2" />
+          <circle cx="40" cy="16" r="2" />
+          <circle cx="52" cy="16" r="2" />
+          <circle cx="64" cy="16" r="2" />
+          <circle cx="4" cy="28" r="2" />
+          <circle cx="16" cy="28" r="2" />
+          <circle cx="28" cy="28" r="2" />
+          <circle cx="40" cy="28" r="2" />
+          <circle cx="52" cy="28" r="2" />
+          <circle cx="64" cy="28" r="2" />
+          <circle cx="4" cy="40" r="2" />
+          <circle cx="16" cy="40" r="2" />
+          <circle cx="28" cy="40" r="2" />
+          <circle cx="40" cy="40" r="2" />
+          <circle cx="52" cy="40" r="2" />
+          <circle cx="64" cy="40" r="2" />
+        </g>
+      </svg>
     </div>
-  </nav>
+  </div>
 
-  <div class="container">
-    <div class="contact-wrap">
-
-      <!-- Left: info -->
-      <div class="contact-info" style="animation: fade-up 0.65s ease both;">
-        <div class="eyebrow">Get in touch</div>
-        <h1 class="display-lg" style="font-size:clamp(32px,4.5vw,54px);">
-          Let's build<br>something <em>great</em>
-        </h1>
-        <p class="body-md" style="max-width:360px; margin-top:16px;">
-          Tell us about your project and we'll get back to you within 24 hours with a clear plan and honest advice.
-        </p>
-
-        <div class="avail-badge">
-          <div class="avail-dot"></div>
-          Currently available for new projects
-        </div>
-
-        <div class="info-card">
-          <a class="info-row" href="mailto:hello@solvingclub.com">
-            <div class="info-icon">
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2 4l6 4 6-4M2 4h12v9H2V4z" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </div>
-            <div>
-              <div class="info-label">Email</div>
-              <div class="info-value">hello@solvingclub.com</div>
-            </div>
-            <span class="info-arrow">↗</span>
-          </a>
-          <a class="info-row" href="#">
-            <div class="info-icon">
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="2" y="2" width="12" height="12" rx="3" stroke="currentColor" stroke-width="1.3"/><path d="M5.5 8a2.5 2.5 0 005 0 2.5 2.5 0 00-5 0z" stroke="currentColor" stroke-width="1.3"/><circle cx="11.5" cy="4.5" r="0.75" fill="currentColor"/></svg>
-            </div>
-            <div>
-              <div class="info-label">Instagram</div>
-              <div class="info-value">@solvingclub</div>
-            </div>
-            <span class="info-arrow">↗</span>
-          </a>
-          <a class="info-row" href="#">
-            <div class="info-icon">
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M14 2L9 8.5l5 5.5H2L7 8.5 2 2h12z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg>
-            </div>
-            <div>
-              <div class="info-label">Twitter / X</div>
-              <div class="info-value">@solvingclub</div>
-            </div>
-            <span class="info-arrow">↗</span>
-          </a>
-          <a class="info-row" href="#">
-            <div class="info-icon">
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2 4.5A2.5 2.5 0 014.5 2h7A2.5 2.5 0 0114 4.5v7a2.5 2.5 0 01-2.5 2.5h-7A2.5 2.5 0 012 11.5v-7z" stroke="currentColor" stroke-width="1.3"/><path d="M6 8a2 2 0 104 0 2 2 0 00-4 0z" stroke="currentColor" stroke-width="1.3"/></svg>
-            </div>
-            <div>
-              <div class="info-label">LinkedIn</div>
-              <div class="info-value">SolvingClub</div>
-            </div>
-            <span class="info-arrow">↗</span>
-          </a>
-        </div>
-      </div>
-
-      <!-- Right: form -->
-      <div class="form-card reveal reveal-d2">
-        <div class="form-header">
-          <div class="form-title">Tell us about your project</div>
-          <p class="form-sub">We'll respond within 24 hours. No templates, no auto-replies.</p>
-        </div>
-
-        <div class="frow">
-          <div class="fgroup">
-            <label>First name</label>
-            <input type="text" placeholder="John">
-          </div>
-          <div class="fgroup">
-            <label>Last name</label>
-            <input type="text" placeholder="Doe">
-          </div>
-        </div>
-        <div class="fgroup">
-          <label>Email</label>
-          <input type="email" placeholder="john@company.com">
-        </div>
-        <div class="fgroup">
-          <label>Company / Project</label>
-          <input type="text" placeholder="What's it called?">
-        </div>
-        <div class="fgroup">
-          <label>What do you need?</label>
-          <select>
-            <option value="" disabled selected>Select a service</option>
-            <option>UI/UX Design</option>
-            <option>Web Development</option>
-            <option>Brand Identity</option>
-            <option>Mobile App</option>
-            <option>Full product build</option>
-            <option>Something else</option>
-          </select>
-        </div>
-        <div class="fgroup">
-          <label>Estimated budget</label>
-          <div class="budget-options">
-            <button class="budget-opt" onclick="selectBudget(this)">Under $5k</button>
-            <button class="budget-opt" onclick="selectBudget(this)">$5k–$15k</button>
-            <button class="budget-opt sel" onclick="selectBudget(this)">$15k–$40k</button>
-            <button class="budget-opt" onclick="selectBudget(this)">$40k+</button>
-          </div>
-        </div>
-        <div class="fgroup">
-          <label>Tell us more</label>
-          <textarea placeholder="What are you building? What problem does it solve? What's your timeline? The more detail, the better."></textarea>
-        </div>
-        <button class="submit-btn">
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2 8h12M9 4l4 4-4 4" stroke="white" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          Send message
+  <div class="page">
+    <nav class="nav">
+      <a class="nav-logo" href="index.html">
+        <img src="assets/brand/solvingclub-logo.png" alt="Solving Club logo">
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="work.html">Our Work</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html" class="active">Contact</a></li>
+      </ul>
+      <div class="nav-right">
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="5" />
+            <line x1="12" y1="1" x2="12" y2="3" />
+            <line x1="12" y1="21" x2="12" y2="23" />
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+            <line x1="1" y1="12" x2="3" y2="12" />
+            <line x1="21" y1="12" x2="23" y2="12" />
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+          </svg>
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+          </svg>
         </button>
+        <a href="work.html" class="btn btn-ghost btn-sm">See our work</a>
       </div>
+    </nav>
 
-    </div>
-  </div>
-
-  <div class="divider-full"></div>
-  <footer>
     <div class="container">
-      <div class="footer-inner">
-        <a class="footer-logo" href="index.html">
-          <img src="solving-club-high-resolution-logo-transparent.png" alt="Solving Club logo">
-        </a>
-        <ul class="footer-nav">
-          <li><a href="services.html">Services</a></li>
-          <li><a href="work.html">Work</a></li>
-          <li><a href="about.html">About</a></li>
-          <li><a href="contact.html">Contact</a></li>
-        </ul>
-        <div class="footer-socials">
-          <a class="footer-social-btn" href="#">𝕏</a>
-          <a class="footer-social-btn" href="#">in</a>
-          <a class="footer-social-btn" href="#" style="font-size:11px;">GH</a>
+      <div class="contact-wrap">
+
+        <!-- Left: info -->
+        <div class="contact-info" style="animation: fade-up 0.65s ease both;">
+          <div class="eyebrow">Get in touch</div>
+          <h1 class="display-lg" style="font-size:clamp(32px,4.5vw,54px);">
+            Let's build<br>something <em>great</em>
+          </h1>
+          <p class="body-md" style="max-width:360px; margin-top:16px;">
+            Tell us about your project and we'll get back to you within 24 hours with a clear plan and honest advice.
+          </p>
+
+          <div class="avail-badge">
+            <div class="avail-dot"></div>
+            Currently available for new projects
+          </div>
+
+          <div class="info-card">
+            <a class="info-row" href="mailto:hello@solvingclub.com">
+              <div class="info-icon">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                  <path d="M2 4l6 4 6-4M2 4h12v9H2V4z" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"
+                    stroke-linejoin="round" />
+                </svg>
+              </div>
+              <div>
+                <div class="info-label">Email</div>
+                <div class="info-value">hello@solvingclub.com</div>
+              </div>
+              <span class="info-arrow">↗</span>
+            </a>
+            <a class="info-row" href="#">
+              <div class="info-icon">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                  <rect x="2" y="2" width="12" height="12" rx="3" stroke="currentColor" stroke-width="1.3" />
+                  <path d="M5.5 8a2.5 2.5 0 005 0 2.5 2.5 0 00-5 0z" stroke="currentColor" stroke-width="1.3" />
+                  <circle cx="11.5" cy="4.5" r="0.75" fill="currentColor" />
+                </svg>
+              </div>
+              <div>
+                <div class="info-label">Instagram</div>
+                <div class="info-value">@solvingclub</div>
+              </div>
+              <span class="info-arrow">↗</span>
+            </a>
+            <a class="info-row" href="#">
+              <div class="info-icon">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                  <path d="M14 2L9 8.5l5 5.5H2L7 8.5 2 2h12z" stroke="currentColor" stroke-width="1.3"
+                    stroke-linejoin="round" />
+                </svg>
+              </div>
+              <div>
+                <div class="info-label">Twitter / X</div>
+                <div class="info-value">@solvingclub</div>
+              </div>
+              <span class="info-arrow">↗</span>
+            </a>
+            <a class="info-row" href="#">
+              <div class="info-icon">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                  <path
+                    d="M2 4.5A2.5 2.5 0 014.5 2h7A2.5 2.5 0 0114 4.5v7a2.5 2.5 0 01-2.5 2.5h-7A2.5 2.5 0 012 11.5v-7z"
+                    stroke="currentColor" stroke-width="1.3" />
+                  <path d="M6 8a2 2 0 104 0 2 2 0 00-4 0z" stroke="currentColor" stroke-width="1.3" />
+                </svg>
+              </div>
+              <div>
+                <div class="info-label">LinkedIn</div>
+                <div class="info-value">SolvingClub</div>
+              </div>
+              <span class="info-arrow">↗</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Right: form -->
+        <div class="form-card reveal reveal-d2">
+          <div class="form-header">
+            <div class="form-title">Tell us about your project</div>
+            <p class="form-sub">We'll respond within 24 hours. No templates, no auto-replies.</p>
+          </div>
+
+          <div class="frow">
+            <div class="fgroup">
+              <label>First name</label>
+              <input type="text" placeholder="John">
+            </div>
+            <div class="fgroup">
+              <label>Last name</label>
+              <input type="text" placeholder="Doe">
+            </div>
+          </div>
+          <div class="fgroup">
+            <label>Email</label>
+            <input type="email" placeholder="john@company.com">
+          </div>
+          <div class="fgroup">
+            <label>Company / Project</label>
+            <input type="text" placeholder="What's it called?">
+          </div>
+          <div class="fgroup">
+            <label>What do you need?</label>
+            <select>
+              <option value="" disabled selected>Select a service</option>
+              <option>UI/UX Design</option>
+              <option>Web Development</option>
+              <option>Brand Identity</option>
+              <option>Mobile App</option>
+              <option>Full product build</option>
+              <option>Something else</option>
+            </select>
+          </div>
+          <div class="fgroup">
+            <label>Estimated budget</label>
+            <div class="budget-options">
+              <button class="budget-opt" onclick="selectBudget(this)">Under $5k</button>
+              <button class="budget-opt" onclick="selectBudget(this)">$5k–$15k</button>
+              <button class="budget-opt sel" onclick="selectBudget(this)">$15k–$40k</button>
+              <button class="budget-opt" onclick="selectBudget(this)">$40k+</button>
+            </div>
+          </div>
+          <div class="fgroup">
+            <label>Tell us more</label>
+            <textarea
+              placeholder="What are you building? What problem does it solve? What's your timeline? The more detail, the better."></textarea>
+          </div>
+          <button class="submit-btn">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+              <path d="M2 8h12M9 4l4 4-4 4" stroke="white" stroke-width="1.4" stroke-linecap="round"
+                stroke-linejoin="round" />
+            </svg>
+            Send message
+          </button>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="divider-full"></div>
+    <footer>
+      <div class="container">
+        <div class="footer-inner">
+          <a class="footer-logo" href="index.html">
+            <img src="assets/brand/solvingclub-logo.png" alt="Solving Club logo">
+          </a>
+          <ul class="footer-nav">
+            <li><a href="services.html">Services</a></li>
+            <li><a href="work.html">Work</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+          <div class="footer-socials">
+            <a class="footer-social-btn" href="#">𝕏</a>
+            <a class="footer-social-btn" href="#">in</a>
+            <a class="footer-social-btn" href="#" style="font-size:11px;">GH</a>
+          </div>
         </div>
       </div>
-    </div>
-  </footer>
-</div>
+    </footer>
+  </div>
 
-<script src="main.js"></script>
-<script>
-function selectBudget(el) {
-  document.querySelectorAll('.budget-opt').forEach(b => b.classList.remove('sel'));
-  el.classList.add('sel');
-}
-</script>
+  <script src="main.js"></script>
+  <script>
+    function selectBudget(el) {
+      document.querySelectorAll('.budget-opt').forEach(b => b.classList.remove('sel'));
+      el.classList.add('sel');
+    }
+  </script>
 </body>
+
 </html>

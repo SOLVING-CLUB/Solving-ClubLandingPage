@@ -2,6 +2,15 @@
    SOLVINGCLUB — SHARED JS
 ═══════════════════════════════════════════ */
 
+// ── Dark Mode Toggle ──────────────────────
+// Apply theme ASAP to avoid flash of wrong theme
+; (function () {
+  const saved = localStorage.getItem('sc-theme');
+  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  const theme = saved || (prefersDark ? 'dark' : 'light');
+  document.documentElement.setAttribute('data-theme', theme);
+}());
+
 // ── Scroll reveal
 const revealObs = new IntersectionObserver((entries) => {
   entries.forEach(e => {
@@ -57,3 +66,48 @@ const counterObs = new IntersectionObserver((entries) => {
 }, { threshold: 0.5 });
 
 document.querySelectorAll('[data-target]').forEach(el => counterObs.observe(el));
+
+// ── Theme toggle button click handler
+const LOGO_LIGHT = 'assets/brand/solvingclub-logo.png';
+const LOGO_DARK = 'assets/brand/solvingclub-logo-dark.svg';
+
+function applyLogoForTheme(theme) {
+  const src = theme === 'dark' ? LOGO_DARK : LOGO_LIGHT;
+  document.querySelectorAll('.nav-logo img, .footer-logo img').forEach(img => {
+    img.src = src;
+  });
+}
+
+// ── Simple auto-carousel for project mockups ──────────────────────
+function initProjectCarousels() {
+  document.querySelectorAll('.proj-img--carousel .proj-carousel-track').forEach(track => {
+    const slides = Array.from(track.querySelectorAll('img'));
+    if (slides.length <= 1) return;
+
+    let index = 0;
+
+    setInterval(() => {
+      index = (index + 1) % slides.length;
+      track.style.transform = `translateX(-${index * 100}%)`;
+    }, 4000);
+  });
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  // Apply correct logo on initial load
+  applyLogoForTheme(document.documentElement.getAttribute('data-theme'));
+
+  // Init project carousels (JobsNext, Saral Events, etc.)
+  initProjectCarousels();
+
+  const btn = document.getElementById('themeToggle');
+  if (!btn) return;
+  btn.addEventListener('click', () => {
+    const html = document.documentElement;
+    const current = html.getAttribute('data-theme');
+    const next = current === 'dark' ? 'light' : 'dark';
+    html.setAttribute('data-theme', next);
+    localStorage.setItem('sc-theme', next);
+    applyLogoForTheme(next);
+  });
+});

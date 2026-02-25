@@ -1,518 +1,495 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Our Work — SolvingClub</title>
-<link rel="stylesheet" href="style.css">
-<style>
-/* ── Work page hero ── */
-.work-hero {
-  padding: 90px 0 72px;
-  text-align: center;
-  position: relative;
-}
-
-/* Filter tabs */
-.filter-bar {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  justify-content: center;
-  margin-top: 36px;
-  flex-wrap: wrap;
-}
-
-.filter-btn {
-  font-family: 'Geist Mono', monospace;
-  font-size: 11.5px;
-  font-weight: 500;
-  letter-spacing: 0.05em;
-  padding: 7px 16px;
-  border-radius: 100px;
-  border: 1px solid var(--border-med);
-  background: var(--bg-white);
-  color: var(--muted);
-  cursor: pointer;
-  transition: all 0.16s;
-}
-.filter-btn:hover, .filter-btn.active {
-  background: var(--fg);
-  color: white;
-  border-color: var(--fg);
-}
-.filter-btn.active { background: var(--accent); border-color: var(--accent); }
-
-/* Case study grid */
-.case-grid {
-  display: grid;
-  grid-template-columns: repeat(12, 1fr);
-  gap: 16px;
-  margin-top: 64px;
-}
-
-.case-card {
-  background: var(--bg-white);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-xl);
-  overflow: hidden;
-  cursor: pointer;
-  transition: transform 0.28s cubic-bezier(0.34,1.4,0.64,1), box-shadow 0.25s;
-  text-decoration: none;
-  color: inherit;
-  display: flex;
-  flex-direction: column;
-}
-.case-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-xl); }
-
-.case-card.hero-case   { grid-column: span 8; }
-.case-card.side-case   { grid-column: span 4; }
-.case-card.half-case   { grid-column: span 6; }
-.case-card.third-case  { grid-column: span 4; }
-
-.case-thumb {
-  position: relative;
-  overflow: hidden;
-  flex-shrink: 0;
-}
-.case-card.hero-case  .case-thumb { height: 360px; }
-.case-card.side-case  .case-thumb { height: 240px; }
-.case-card.half-case  .case-thumb { height: 280px; }
-.case-card.third-case .case-thumb { height: 220px; }
-
-.case-thumb-bg {
-  position: absolute; inset: 0;
-  background-image:
-    linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
-  background-size: 32px 32px;
-}
-
-.case-thumb-content {
-  position: absolute; inset: 0;
-  display: flex; align-items: center; justify-content: center;
-}
-
-/* UI Mockup elements inside case cards */
-.mockup-window {
-  background: rgba(255,255,255,0.06);
-  border: 1px solid rgba(255,255,255,0.1);
-  border-radius: 10px;
-  backdrop-filter: blur(8px);
-  padding: 16px;
-}
-.mockup-bar {
-  display: flex; gap: 5px; margin-bottom: 12px;
-}
-.mockup-dot { width: 7px; height: 7px; border-radius: 50%; }
-.mockup-line { height: 5px; border-radius: 3px; margin-bottom: 6px; }
-.mockup-block { border-radius: 6px; }
-
-.case-overlay {
-  position: absolute; inset: 0;
-  background: linear-gradient(to top, rgba(0,0,0,0.35) 0%, transparent 50%);
-}
-
-.case-body {
-  padding: 24px 26px 26px;
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-}
-
-.case-tags {
-  display: flex; gap: 6px; margin-bottom: 14px;
-}
-
-.case-name {
-  font-family: 'Instrument Serif', serif;
-  font-size: 22px;
-  font-weight: 400;
-  letter-spacing: -0.02em;
-  color: var(--fg);
-  margin-bottom: 8px;
-  line-height: 1.2;
-}
-.case-card.hero-case .case-name { font-size: 28px; }
-
-.case-desc {
-  font-size: 13.5px;
-  color: var(--muted);
-  line-height: 1.6;
-  flex: 1;
-  margin-bottom: 18px;
-}
-
-.case-metrics {
-  display: flex; gap: 20px;
-  padding-top: 16px;
-  border-top: 1px solid var(--border);
-}
-
-.case-metric-val {
-  font-family: 'Instrument Serif', serif;
-  font-size: 22px;
-  font-weight: 400;
-  letter-spacing: -0.02em;
-  color: var(--fg);
-  line-height: 1;
-}
-.case-metric-val em { color: var(--accent); font-style: normal; }
-.case-metric-lbl { font-size: 11px; font-family: 'Geist Mono', monospace; color: var(--muted-2); letter-spacing: 0.04em; margin-top: 3px; }
-
-/* ── Responsive work ── */
-@media (max-width: 1000px) {
-  .case-grid { grid-template-columns: 1fr 1fr; }
-  .case-card.hero-case, .case-card.side-case,
-  .case-card.half-case, .case-card.third-case { grid-column: span 1; }
-  .case-card.hero-case .case-thumb { height: 260px; }
-}
-@media (max-width: 640px) {
-  .case-grid { grid-template-columns: 1fr; }
-}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Our Work — SolvingClub</title>
+  <meta name="description"
+    content="A collection of real-world projects built by SolvingClub — mobile apps, web platforms, and websites for ambitious clients.">
+  <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
-<div class="grid-bg">
-  <div class="grid-lines"></div>
-  <div class="grid-dots"></div>
-  <div class="grid-fade"></div>
-  <div class="grid-star primary" style="top: calc(var(--grid-sz)*0 - 15px); right: calc(var(--grid-sz)*0 - 15px);">
-    <svg class="star-svg large" viewBox="0 0 30 30" fill="none">
-      <path d="M15 0 C15 0 16.2 13 17 15 C18 17 30 15 30 15 C30 15 17 16.2 15 17 C13 18 15 30 15 30 C15 30 13.8 17 13 15 C12 13 0 15 0 15 C0 15 13 13.8 15 13 C17 12 15 0 15 0Z" fill="#e8541e"/>
-    </svg>
-  </div>
-  <div class="grid-star secondary" style="top: calc(var(--grid-sz)*3 - 9px); left: calc(var(--grid-sz)*2 - 9px); opacity:0.38;">
-    <svg class="star-svg small" viewBox="0 0 30 30" fill="none">
-      <path d="M15 0 C15 0 16.2 13 17 15 C18 17 30 15 30 15 C30 15 17 16.2 15 17 C13 18 15 30 15 30 C15 30 13.8 17 13 15 C12 13 0 15 0 15 C0 15 13 13.8 15 13 C17 12 15 0 15 0Z" fill="#999993"/>
-    </svg>
-  </div>
-  <div style="position:absolute; bottom: 60px; left: 40px; opacity:0.3;">
-    <svg width="56" height="56" viewBox="0 0 56 56">
-      <g fill="rgba(0,0,0,0.35)">
-        <circle cx="4" cy="4" r="1.5"/><circle cx="14" cy="4" r="1.5"/><circle cx="24" cy="4" r="1.5"/><circle cx="34" cy="4" r="1.5"/><circle cx="44" cy="4" r="1.5"/>
-        <circle cx="4" cy="14" r="1.5"/><circle cx="14" cy="14" r="1.5"/><circle cx="24" cy="14" r="1.5"/><circle cx="34" cy="14" r="1.5"/><circle cx="44" cy="14" r="1.5"/>
-        <circle cx="4" cy="24" r="1.5"/><circle cx="14" cy="24" r="1.5"/><circle cx="24" cy="24" r="1.5"/><circle cx="34" cy="24" r="1.5"/><circle cx="44" cy="24" r="1.5"/>
-        <circle cx="4" cy="34" r="1.5"/><circle cx="14" cy="34" r="1.5"/><circle cx="24" cy="34" r="1.5"/><circle cx="34" cy="34" r="1.5"/><circle cx="44" cy="34" r="1.5"/>
-        <circle cx="4" cy="44" r="1.5"/><circle cx="14" cy="44" r="1.5"/><circle cx="24" cy="44" r="1.5"/><circle cx="34" cy="44" r="1.5"/><circle cx="44" cy="44" r="1.5"/>
-      </g>
-    </svg>
-  </div>
-</div>
+  <div class="grid-bg">
+    <div class="grid-lines"></div>
+    <div class="grid-dots"></div>
+    <div class="grid-fade"></div>
+    <!-- Gradient blobs from Figma design system -->
+    <div class="grad-blob grad-blob-1"></div>
+    <div class="grad-blob grad-blob-2"></div>
+    <div class="grad-blob grad-blob-3"></div>
 
-<div class="page">
-  <nav class="nav">
-    <a class="nav-logo" href="index.html">
-      <img src="solving-club-high-resolution-logo-transparent.png" alt="Solving Club logo">
-    </a>
-    <ul class="nav-links">
-      <li><a href="index.html">Home</a></li>
-      <li><a href="services.html">Services</a></li>
-      <li><a href="work.html" class="active">Our Work</a></li>
-      <li><a href="about.html">About</a></li>
-      <li><a href="contact.html">Contact</a></li>
-    </ul>
-    <div class="nav-right">
-      <a href="contact.html" class="btn btn-ghost btn-sm">Get in touch</a>
-      <a href="contact.html" class="btn btn-accent btn-sm">Start a project →</a>
-    </div>
-  </nav>
+  </div>
 
-  <!-- Hero -->
-  <section class="work-hero">
-    <div class="container">
-      <div class="eyebrow" style="justify-content:center;">Portfolio</div>
-      <h1 class="display-xl" style="animation: fade-up 0.65s ease both;">
-        Work that <em>speaks</em>
-      </h1>
-      <p class="body-lg" style="max-width:440px;margin:18px auto 0;animation:fade-up 0.65s 0.1s ease both;">
-        48+ projects shipped across SaaS, e-commerce, mobile, and brand identity.
-      </p>
-
-      <div class="filter-bar" style="animation:fade-up 0.65s 0.2s ease both;">
-        <button class="filter-btn active" onclick="filterWork('all',this)">All</button>
-        <button class="filter-btn" onclick="filterWork('saas',this)">SaaS</button>
-        <button class="filter-btn" onclick="filterWork('brand',this)">Brand</button>
-        <button class="filter-btn" onclick="filterWork('mobile',this)">Mobile</button>
-        <button class="filter-btn" onclick="filterWork('ecomm',this)">E-commerce</button>
+  <div class="page">
+    <nav class="nav">
+      <a class="nav-logo" href="index.html">
+        <img src="assets/brand/solvingclub-logo.png" alt="Solving Club logo">
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="work.html" class="active">Our Work</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+      <div class="nav-right">
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="5" />
+            <line x1="12" y1="1" x2="12" y2="3" />
+            <line x1="12" y1="21" x2="12" y2="23" />
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+            <line x1="1" y1="12" x2="3" y2="12" />
+            <line x1="21" y1="12" x2="23" y2="12" />
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+          </svg>
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+          </svg>
+        </button>
+        <a href="contact.html" class="btn btn-ghost btn-sm">Get in touch</a>
+        <a href="contact.html" class="btn btn-accent btn-sm">Start a project →</a>
       </div>
-    </div>
-  </section>
+    </nav>
 
-  <div class="divider-full"></div>
+    <!-- Hero -->
+    <section class="work-hero">
+      <div class="container">
+        <div class="eyebrow" style="justify-content:center;">Portfolio</div>
+        <h1 class="display-xl" style="animation: fade-up 0.65s ease both;">
+          Work that <em>speaks</em>
+        </h1>
+        <p class="body-lg" style="max-width:460px;margin:18px auto 0;animation:fade-up 0.65s 0.1s ease both;">
+          10 projects shipped across mobile apps, web platforms, and marketing websites for ambitious clients.
+        </p>
 
-  <!-- Case Studies -->
-  <section class="section">
-    <div class="container">
-      <div class="case-grid">
-
-        <!-- 1: Hero case -->
-        <a class="case-card hero-case reveal" href="#" data-cat="saas">
-          <div class="case-thumb">
-            <div style="position:absolute;inset:0;background:linear-gradient(135deg,#0d1f35 0%,#132d4a 50%,#0a3060 100%);"></div>
-            <div class="case-thumb-bg"></div>
-            <div class="case-thumb-content">
-              <div style="width:75%;position:relative;z-index:1;">
-                <div class="mockup-window" style="width:100%;">
-                  <div class="mockup-bar">
-                    <div class="mockup-dot" style="background:#ff5f57;"></div>
-                    <div class="mockup-dot" style="background:#febc2e;"></div>
-                    <div class="mockup-dot" style="background:#28c840;"></div>
-                    <div style="margin-left:auto;width:80px;height:7px;background:rgba(255,255,255,0.1);border-radius:3px;"></div>
-                  </div>
-                  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:12px;">
-                    <div style="height:52px;background:rgba(232,84,30,0.25);border:1px solid rgba(232,84,30,0.4);border-radius:8px;display:flex;align-items:center;justify-content:center;">
-                      <span style="font-family:'Instrument Serif',serif;font-size:18px;color:rgba(255,255,255,0.8);font-style:italic;">+24%</span>
-                    </div>
-                    <div style="height:52px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.08);border-radius:8px;"></div>
-                    <div style="height:52px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.08);border-radius:8px;"></div>
-                  </div>
-                  <div class="mockup-line" style="background:rgba(255,255,255,0.12);width:100%;"></div>
-                  <div class="mockup-line" style="background:rgba(255,255,255,0.07);width:75%;"></div>
-                  <div class="mockup-line" style="background:rgba(232,84,30,0.4);width:50%;"></div>
-                </div>
-              </div>
-            </div>
-            <div class="case-overlay"></div>
-          </div>
-          <div class="case-body">
-            <div class="case-tags">
-              <span class="tag tag-accent">SaaS</span>
-              <span class="tag tag-muted">Dashboard</span>
-            </div>
-            <div class="case-name">FinanceFlow — Real-time Analytics Platform</div>
-            <p class="case-desc">A comprehensive financial analytics dashboard for SME owners. We designed and built the full product from scratch — data modeling, real-time charts, and a clean interface that non-technical founders actually use.</p>
-            <div class="case-metrics">
-              <div>
-                <div class="case-metric-val">34<em>%</em></div>
-                <div class="case-metric-lbl">Conversion lift</div>
-              </div>
-              <div>
-                <div class="case-metric-val">2<em>wk</em></div>
-                <div class="case-metric-lbl">To first version</div>
-              </div>
-              <div>
-                <div class="case-metric-val">12<em>k</em></div>
-                <div class="case-metric-lbl">Active users</div>
-              </div>
-            </div>
-          </div>
-        </a>
-
-        <!-- 2: Side case -->
-        <a class="case-card side-case reveal reveal-d2" href="#" data-cat="brand">
-          <div class="case-thumb">
-            <div style="position:absolute;inset:0;background:linear-gradient(135deg,#1a0533 0%,#3b1068 100%);"></div>
-            <div class="case-thumb-bg"></div>
-            <div class="case-thumb-content">
-              <div style="position:relative;z-index:1;text-align:center;">
-                <div style="font-family:'Instrument Serif',serif;font-size:42px;font-style:italic;color:white;opacity:0.9;letter-spacing:-0.02em;">Orbit</div>
-                <div style="display:flex;gap:6px;justify-content:center;margin-top:10px;">
-                  <div style="width:48px;height:4px;border-radius:2px;background:rgba(232,84,30,0.8);"></div>
-                  <div style="width:24px;height:4px;border-radius:2px;background:rgba(255,255,255,0.25);"></div>
-                  <div style="width:16px;height:4px;border-radius:2px;background:rgba(255,255,255,0.15);"></div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="case-body">
-            <div class="case-tags"><span class="tag tag-accent">Brand</span></div>
-            <div class="case-name">Orbit — Brand Identity System</div>
-            <p class="case-desc">Full brand identity: logo, type system, color palette, and component library for a B2B SaaS startup.</p>
-            <div class="case-metrics">
-              <div>
-                <div class="case-metric-val">6<em>wk</em></div>
-                <div class="case-metric-lbl">Delivery</div>
-              </div>
-              <div>
-                <div class="case-metric-val">140<em>+</em></div>
-                <div class="case-metric-lbl">Components</div>
-              </div>
-            </div>
-          </div>
-        </a>
-
-        <!-- 3: Half case -->
-        <a class="case-card half-case reveal" href="#" data-cat="ecomm">
-          <div class="case-thumb">
-            <div style="position:absolute;inset:0;background:linear-gradient(135deg,#052e16 0%,#064e3b 60%,#0a5e48 100%);"></div>
-            <div class="case-thumb-bg"></div>
-            <div class="case-thumb-content">
-              <div style="position:relative;z-index:1;width:70%;">
-                <div class="mockup-window">
-                  <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;">
-                    <div style="width:28px;height:28px;border-radius:6px;background:rgba(16,185,129,0.4);border:1px solid rgba(16,185,129,0.5);"></div>
-                    <div>
-                      <div class="mockup-line" style="background:rgba(255,255,255,0.25);width:80px;"></div>
-                      <div class="mockup-line" style="background:rgba(255,255,255,0.1);width:48px;margin-top:4px;"></div>
-                    </div>
-                  </div>
-                  <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;">
-                    <div class="mockup-block" style="height:36px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.08);"></div>
-                    <div class="mockup-block" style="height:36px;background:rgba(16,185,129,0.25);border:1px solid rgba(16,185,129,0.3);"></div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="case-body">
-            <div class="case-tags"><span class="tag tag-accent">E-commerce</span><span class="tag tag-muted">Web</span></div>
-            <div class="case-name">GreenCart — Eco Marketplace</div>
-            <p class="case-desc">End-to-end e-commerce platform for sustainable products. Custom checkout, vendor dashboard, and carbon impact tracking.</p>
-            <div class="case-metrics">
-              <div><div class="case-metric-val">2.1<em>×</em></div><div class="case-metric-lbl">Revenue growth</div></div>
-              <div><div class="case-metric-val">800<em>+</em></div><div class="case-metric-lbl">Products listed</div></div>
-            </div>
-          </div>
-        </a>
-
-        <!-- 4: Half case -->
-        <a class="case-card half-case reveal reveal-d2" href="#" data-cat="mobile">
-          <div class="case-thumb">
-            <div style="position:absolute;inset:0;background:linear-gradient(135deg,#0f172a 0%,#1e293b 50%,#0f3460 100%);"></div>
-            <div class="case-thumb-bg"></div>
-            <div class="case-thumb-content">
-              <div style="position:relative;z-index:1;display:flex;gap:14px;align-items:flex-end;">
-                <!-- Phone mockup -->
-                <div style="width:72px;height:130px;background:rgba(255,255,255,0.06);border:1.5px solid rgba(255,255,255,0.15);border-radius:14px;padding:8px 6px;flex-shrink:0;">
-                  <div style="width:24px;height:3px;background:rgba(255,255,255,0.2);border-radius:2px;margin:0 auto 8px;"></div>
-                  <div style="display:flex;flex-direction:column;gap:5px;">
-                    <div style="height:18px;background:rgba(232,84,30,0.3);border-radius:4px;border:1px solid rgba(232,84,30,0.4);"></div>
-                    <div style="height:12px;background:rgba(255,255,255,0.06);border-radius:4px;"></div>
-                    <div style="height:12px;background:rgba(255,255,255,0.06);border-radius:4px;"></div>
-                    <div style="height:12px;background:rgba(255,255,255,0.04);border-radius:4px;width:70%;"></div>
-                  </div>
-                </div>
-                <div style="width:72px;height:110px;background:rgba(255,255,255,0.04);border:1.5px solid rgba(255,255,255,0.1);border-radius:14px;padding:8px 6px;flex-shrink:0;">
-                  <div style="display:flex;flex-direction:column;gap:5px;">
-                    <div style="height:12px;background:rgba(255,255,255,0.1);border-radius:4px;width:80%;"></div>
-                    <div style="height:32px;background:rgba(255,255,255,0.05);border-radius:6px;margin-top:4px;"></div>
-                    <div style="height:9px;background:rgba(255,255,255,0.06);border-radius:4px;"></div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="case-body">
-            <div class="case-tags"><span class="tag tag-accent">Mobile</span><span class="tag tag-muted">iOS & Android</span></div>
-            <div class="case-name">Skybridge — Community App</div>
-            <p class="case-desc">Cross-platform mobile app connecting local communities. Built with React Native, shipped to both stores in 10 weeks.</p>
-            <div class="case-metrics">
-              <div><div class="case-metric-val">4.8<em>★</em></div><div class="case-metric-lbl">App store rating</div></div>
-              <div><div class="case-metric-val">25<em>k</em></div><div class="case-metric-lbl">Downloads</div></div>
-            </div>
-          </div>
-        </a>
-
-        <!-- 5, 6, 7: Third cases -->
-        <a class="case-card third-case reveal" href="#" data-cat="brand">
-          <div class="case-thumb">
-            <div style="position:absolute;inset:0;background:linear-gradient(135deg,#1c1917 0%,#292524 100%);"></div>
-            <div class="case-thumb-bg"></div>
-            <div class="case-thumb-content">
-              <div style="position:relative;z-index:1;font-family:'Instrument Serif',serif;font-size:26px;font-style:italic;color:rgba(255,255,255,0.82);">Pulse</div>
-            </div>
-          </div>
-          <div class="case-body">
-            <div class="case-tags"><span class="tag tag-muted">Brand</span></div>
-            <div class="case-name">Pulse Media</div>
-            <p class="case-desc">Complete rebrand for a digital media company — new identity, website, and design system.</p>
-          </div>
-        </a>
-
-        <a class="case-card third-case reveal reveal-d2" href="#" data-cat="saas">
-          <div class="case-thumb">
-            <div style="position:absolute;inset:0;background:linear-gradient(135deg,#1e1b4b 0%,#312e81 100%);"></div>
-            <div class="case-thumb-bg"></div>
-            <div class="case-thumb-content">
-              <div style="position:relative;z-index:1;font-family:'Instrument Serif',serif;font-size:26px;font-style:italic;color:rgba(255,255,255,0.82);">Nova</div>
-            </div>
-          </div>
-          <div class="case-body">
-            <div class="case-tags"><span class="tag tag-muted">SaaS</span></div>
-            <div class="case-name">NovaTech Platform</div>
-            <p class="case-desc">B2B SaaS dashboard for supply chain visibility — from 0 to product-market fit in 3 months.</p>
-          </div>
-        </a>
-
-        <a class="case-card third-case reveal reveal-d3" href="#" data-cat="mobile">
-          <div class="case-thumb">
-            <div style="position:absolute;inset:0;background:linear-gradient(135deg,#0c1a0e 0%,#14532d 100%);"></div>
-            <div class="case-thumb-bg"></div>
-            <div class="case-thumb-content">
-              <div style="position:relative;z-index:1;font-family:'Instrument Serif',serif;font-size:26px;font-style:italic;color:rgba(255,255,255,0.82);">Forge</div>
-            </div>
-          </div>
-          <div class="case-body">
-            <div class="case-tags"><span class="tag tag-muted">Mobile</span></div>
-            <div class="case-name">Forge Digital App</div>
-            <p class="case-desc">Productivity mobile app with offline-first architecture and clean, focused UI.</p>
-          </div>
-        </a>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- CTA -->
-  <section class="section-sm">
-    <div class="container">
-      <div class="cta-dark reveal" style="padding:64px;">
-        <div class="cta-dark-grid"></div>
-        <div class="cta-dark-glow"></div>
-        <div class="grid-star primary" style="position:absolute;top:-1px;right:-1px;">
-          <svg class="star-svg large" viewBox="0 0 30 30" fill="none"><path d="M15 0 C15 0 16.2 13 17 15 C18 17 30 15 30 15 C30 15 17 16.2 15 17 C13 18 15 30 15 30 C15 30 13.8 17 13 15 C12 13 0 15 0 15 C0 15 13 13.8 15 13 C17 12 15 0 15 0Z" fill="#e8541e"/></svg>
-        </div>
-        <div style="position:relative;z-index:1;text-align:center;display:flex;flex-direction:column;align-items:center;">
-          <div class="cta-eyebrow">Your project, next</div>
-          <h2 class="cta-title" style="font-size:clamp(28px,4vw,48px);">Want to be on<br>this page? <em>Let's talk.</em></h2>
-          <div class="cta-btns">
-            <a href="contact.html" class="btn btn-white btn-lg">Start a project →</a>
-          </div>
+        <div class="filter-bar" style="animation:fade-up 0.65s 0.2s ease both;">
+          <button class="filter-btn active" onclick="filterWork('all',this)">All Projects</button>
+          <button class="filter-btn" onclick="filterWork('mobile',this)">Mobile App</button>
+          <button class="filter-btn" onclick="filterWork('webapp',this)">Web App</button>
+          <button class="filter-btn" onclick="filterWork('website',this)">Website</button>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <div class="divider-full"></div>
-  <footer>
-    <div class="container">
-      <div class="footer-inner">
-        <a class="footer-logo" href="index.html">
-          <img src="solving-club-high-resolution-logo-transparent.png" alt="Solving Club logo">
-        </a>
-        <ul class="footer-nav">
-          <li><a href="services.html">Services</a></li>
-          <li><a href="work.html">Work</a></li>
-          <li><a href="about.html">About</a></li>
-          <li><a href="contact.html">Contact</a></li>
-        </ul>
-        <div class="footer-socials">
-          <a class="footer-social-btn" href="#">𝕏</a>
-          <a class="footer-social-btn" href="#">in</a>
-          <a class="footer-social-btn" href="#" style="font-size:11px;">GH</a>
+    <div class="divider-full"></div>
+
+    <!-- Project list -->
+    <section class="section">
+      <div class="container">
+        <div class="project-list">
+
+          <!-- 1. Plattr -->
+          <article class="project-article reveal" data-cat="mobile">
+            <div class="proj-img proj-img--carousel">
+              <div class="proj-carousel-track">
+                <img src="assets/plattr/plattr-mockup-1.png" alt="Plattr mobile app mockup">
+                <img src="assets/plattr/plattr-mockup-2.png" alt="Plattr logo and app icon">
+              </div>
+            </div>
+            <div class="proj-body">
+              <div class="proj-meta">
+                <span class="badge accent">Mobile App</span>
+                <span class="badge green">Completed</span>
+              </div>
+              <div class="proj-header">
+                <div>
+                  <div class="proj-title">Plattr</div>
+                  <div class="proj-subtitle">Cross-Platform Hospitality App · iOS &amp; Android</div>
+                </div>
+                <img src="assets/plattr/plattr-logo.png" alt="Plattr logo" class="proj-logo-right">
+              </div>
+              <p class="proj-desc">
+                Cross-platform hospitality app built with React &amp; Capacitor, running on web, iOS, and Android.
+                Covers booking management, property operations, and customer communication for hospitality teams.
+                Includes full App Store and Google Play deployment.
+              </p>
+              <div class="proj-tech">
+                <span class="tech-pill">TypeScript</span>
+                <span class="tech-pill">React</span>
+                <span class="tech-pill">Capacitor</span>
+                <span class="tech-pill">Supabase</span>
+                <span class="tech-pill">Firebase</span>
+                <span class="tech-pill">Vercel</span>
+              </div>
+              <div class="proj-footer">
+                <a href="https://apps.apple.com/in/app/plattr/id6754812718" target="_blank" rel="noopener"
+                  class="btn btn-dark btn-sm">App Store ↗</a>
+                <a href="https://play.google.com/store/apps/details?id=com.caterplanner.app" target="_blank"
+                  rel="noopener" class="btn btn-outline btn-sm">Play Store ↗</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- 2. JobsNext -->
+          <article class="project-article reveal" data-cat="mobile">
+            <div class="proj-img proj-img--carousel">
+              <div class="proj-carousel-track">
+                <img src="assets/jobsnext/jobsnext-mockup-1.png" alt="JobsNext job portal app mockups">
+                <img src="assets/jobsnext/jobsnext-mockup-2.png" alt="JobsNext logo & app icon mockup">
+              </div>
+            </div>
+            <div class="proj-body">
+              <div class="proj-meta">
+                <span class="badge accent">Mobile App</span>
+                <span class="badge blue dot-green">Ongoing</span>
+              </div>
+              <div class="proj-header">
+                <div>
+                  <div class="proj-title">JobsNext</div>
+                  <div class="proj-subtitle">Job Portal Mobile App · Android &amp; iOS</div>
+                </div>
+                <img src="assets/jobsnext/jobsnext-logo.png" alt="JobsNext logo" class="proj-logo-right">
+              </div>
+              <p class="proj-desc">
+                End-to-end Flutter job portal app bringing an existing web recruitment platform to Android and iOS.
+                Features four modules — Employer, Job Seeker, Admin, and Director — with video resumes, advanced job
+                search, application tracking, and analytics dashboards.
+              </p>
+              <div class="proj-tech">
+                <span class="tech-pill">Flutter</span>
+                <span class="tech-pill">Dart</span>
+                <span class="tech-pill">Clean Architecture</span>
+                <span class="tech-pill">Provider</span>
+                <span class="tech-pill">GoRouter</span>
+                <span class="tech-pill">Firebase</span>
+              </div>
+              <div class="proj-footer">
+                <span class="badge blue">Client: ABSOLVE IT&amp;HR PVT.LTD</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- 3. Saral Events — User App -->
+          <article class="project-article reveal" data-cat="mobile">
+            <div class="proj-img proj-img--carousel">
+              <div class="proj-carousel-track">
+                <img src="assets/saral-events/saralevents-user-mockup-1.png" alt="Saral Events user app mockup">
+                <img src="assets/saral-events/saralevents-user-mockup-2.png" alt="Saral Events user app second mockup">
+              </div>
+            </div>
+            <div class="proj-body">
+              <div class="proj-meta">
+                <span class="badge accent">Mobile App</span>
+                <span class="badge blue dot-green">Ongoing</span>
+              </div>
+              <div class="proj-header">
+                <div>
+                  <div class="proj-title">Saral Events — User App</div>
+                  <div class="proj-subtitle">Customer App · iOS &amp; Android</div>
+                </div>
+                <img src="assets/saral-events/saralevents-user-logo.png" alt="Saral Events logo" class="proj-logo-right">
+              </div>
+              <p class="proj-desc">
+                Flutter app for customers on the Saral Events platform. Users plan events end-to-end, discover verified
+                vendors, create e‑invites, and complete bookings — all backed by a shared Supabase backend.
+              </p>
+              <div class="proj-tech">
+                <span class="tech-pill">Flutter</span>
+                <span class="tech-pill">Dart</span>
+                <span class="tech-pill">Supabase</span>
+                <span class="tech-pill">Razorpay</span>
+                <span class="tech-pill">Deep Links</span>
+                <span class="tech-pill">Push Notifications</span>
+              </div>
+              <div class="proj-footer">
+                <a href="#" class="btn btn-dark btn-sm">App Store ↗</a>
+                <a href="#" class="btn btn-outline btn-sm">Play Store ↗</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- 4. Saral Events — Vendor App -->
+          <article class="project-article reveal" data-cat="mobile">
+            <div class="proj-img proj-img--carousel">
+              <div class="proj-carousel-track">
+                <img src="assets/saral-events/saralevents-vendor-mockup-1.png" alt="Saral Events vendor app dashboard mockup">
+                <img src="assets/saral-events/saralevents-vendor-mockup-2.png" alt="Saral Events vendor app icon on home screen">
+              </div>
+            </div>
+            <div class="proj-body">
+              <div class="proj-meta">
+                <span class="badge accent">Mobile App</span>
+                <span class="badge blue dot-green">Ongoing</span>
+              </div>
+              <div class="proj-header">
+                <div>
+                  <div class="proj-title">Saral Events — Vendor App</div>
+                  <div class="proj-subtitle">Vendor Management App · iOS &amp; Android</div>
+                </div>
+                <img src="assets/saral-events/saralevents-vendor-logo.png" alt="Saral Events vendor logo" class="proj-logo-right">
+              </div>
+              <p class="proj-desc">
+                Dedicated app for service providers on Saral Events. Vendors manage services, availability, respond to
+                bookings, and track payouts, staying in sync with the shared Supabase backend and admin portal.
+              </p>
+              <div class="proj-tech">
+                <span class="tech-pill">Flutter</span>
+                <span class="tech-pill">Dart</span>
+                <span class="tech-pill">Supabase</span>
+                <span class="tech-pill">Push Notifications</span>
+              </div>
+              <div class="proj-footer">
+                <a href="#" class="btn btn-dark btn-sm">App Store ↗</a>
+                <a href="#" class="btn btn-outline btn-sm">Play Store ↗</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- 5. Saral Events Admin -->
+          <article class="project-article reveal" data-cat="webapp">
+            <div class="proj-img proj-img--carousel">
+              <div class="proj-carousel-track">
+                <img src="assets/saral-events/saralevents-admin-mockup-1.png" alt="Saral Events admin laptop mockup">
+                <img src="assets/saral-events/saralevents-admin-mockup-2.png" alt="Saral Events admin dashboard full view">
+                <img src="assets/saral-events/saralevents-admin-mockup-3.png" alt="Saral Events admin dashboard close-up">
+              </div>
+            </div>
+            <div class="proj-body">
+              <div class="proj-meta">
+                <span class="badge accent">Web App</span>
+                <span class="badge blue dot-green">Ongoing</span>
+              </div>
+              <div class="proj-header">
+                <div>
+                  <div class="proj-title">Saral Events — Admin Portal</div>
+                  <div class="proj-subtitle">Company Dashboard Web App</div>
+                </div>
+                <img src="assets/saral-events/saralevents-admin-logo.png" alt="Saral Events Admin logo" class="proj-logo-right">
+              </div>
+              <p class="proj-desc">
+                Next.js 14 admin portal giving the Saral Events operations team full control — dashboards for orders,
+                vendors, users, services, reviews, banners, and support tickets. Backed by Supabase SQL views and
+                role-based access control.
+              </p>
+              <div class="proj-tech">
+                <span class="tech-pill">Next.js 14</span>
+                <span class="tech-pill">TypeScript</span>
+                <span class="tech-pill">Tailwind CSS</span>
+                <span class="tech-pill">Supabase</span>
+                <span class="tech-pill">Postgres</span>
+                <span class="tech-pill">RBAC</span>
+              </div>
+              <div class="proj-footer">
+                <span class="badge amber">Admin Only</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- 6. Saral Events Website -->
+          <article class="project-article reveal" data-cat="website">
+            <div class="proj-img">
+              <img src="assets/saral-events/saral-website.png" alt="Saral Events marketing website">
+            </div>
+            <div class="proj-body">
+              <div class="proj-meta">
+                <span class="badge accent">Website</span>
+                <span class="badge blue dot-green">Ongoing</span>
+              </div>
+              <div>
+                <div class="proj-title">Saral Events — Website</div>
+                <div class="proj-subtitle">Marketing Website &amp; Deep-Link Host</div>
+              </div>
+              <p class="proj-desc">
+                Public marketing site that introduces Saral Events, showcases service categories, and routes users into
+                the correct app screens via universal links. SEO-optimised with clear CTAs to download the apps or start
+                planning an event.
+              </p>
+              <div class="proj-tech">
+                <span class="tech-pill">Next.js 14</span>
+                <span class="tech-pill">TypeScript</span>
+                <span class="tech-pill">Tailwind CSS</span>
+                <span class="tech-pill">Vercel</span>
+              </div>
+              <div class="proj-footer">
+                <a href="#" class="btn btn-dark btn-sm">Visit Site ↗</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- 7. Tuvo -->
+          <article class="project-article reveal" data-cat="webapp">
+            <div class="proj-img proj-img--carousel">
+              <div class="proj-carousel-track">
+                <img src="assets/tuvo/tuvo-mockup-1.png" alt="Tuvo landing page mockup">
+                <img src="assets/tuvo/tuvo-mockup-2.png" alt="Tuvo event categories mockup">
+                <img src="assets/tuvo/tuvo-mockup-3.png" alt="Tuvo full homepage mockup">
+              </div>
+            </div>
+            <div class="proj-body">
+              <div class="proj-meta">
+                <span class="badge accent">Web App</span>
+                <span class="badge green">Completed</span>
+              </div>
+              <div class="proj-header">
+                <div>
+                  <div class="proj-title">Tuvo</div>
+                  <div class="proj-subtitle">Ticket Booking Platform · tuvo.in</div>
+                </div>
+                <img src="assets/tuvo/tuvo-logo.png" alt="Tuvo logo" class="proj-logo-right">
+              </div>
+              <p class="proj-desc">
+                BookMyShow-style ticket booking platform built on Next.js and Supabase. Users register, browse events,
+                and purchase tickets through PayU; on success they receive a confirmation email with their ticket
+                attached. Includes an admin dashboard for event management.
+              </p>
+              <div class="proj-tech">
+                <span class="tech-pill">Next.js</span>
+                <span class="tech-pill">TypeScript</span>
+                <span class="tech-pill">Tailwind</span>
+                <span class="tech-pill">Supabase</span>
+                <span class="tech-pill">PayU</span>
+                <span class="tech-pill">Resend</span>
+              </div>
+              <div class="proj-footer">
+                <a href="https://tuvo.in" target="_blank" rel="noopener" class="btn btn-dark btn-sm">Visit Site ↗</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- 8. Relai World -->
+          <article class="project-article reveal" data-cat="website">
+            <div class="proj-img proj-img--carousel">
+              <div class="proj-carousel-track">
+                <img src="assets/relai/relai-mockup-1.png" alt="Relai property portfolio mockup">
+                <img src="assets/relai/relai-mockup-2.png" alt="Relai portfolio page mockup">
+                <img src="assets/relai/relai-mockup-3.png" alt="Relai laptop mockup">
+              </div>
+            </div>
+            <div class="proj-body">
+              <div class="proj-meta">
+                <span class="badge accent">Website</span>
+                <span class="badge blue dot-green">Ongoing</span>
+              </div>
+              <div class="proj-header">
+                <div>
+                  <div class="proj-title">Relai World</div>
+                  <div class="proj-subtitle">Corporate Marketing Website</div>
+                </div>
+                <img src="assets/relai/relai-logo.png" alt="Relai logo" class="proj-logo-right">
+              </div>
+              <p class="proj-desc">
+                Corporate website showcasing Relai World's services, company story, and contact touchpoints. Features
+                service pages, team section, and integrated contact forms with email notifications.
+              </p>
+              <div class="proj-tech">
+                <span class="tech-pill">Next.js</span>
+                <span class="tech-pill">TypeScript</span>
+                <span class="tech-pill">Tailwind CSS</span>
+                <span class="tech-pill">Vercel</span>
+              </div>
+              <div class="proj-footer">
+                <a href="#" class="btn btn-dark btn-sm">Visit Site ↗</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- 9. Pranaras Academy -->
+          <article class="project-article reveal" data-cat="website">
+            <div class="proj-img proj-img--carousel">
+              <div class="proj-carousel-track">
+                <img src="assets/pranaras/pranaras-mockup-1.png" alt="Pranaras Academy homepage mockup">
+                <img src="assets/pranaras/pranaras-mockup-2.png" alt="Pranaras Academy hero close-up mockup">
+                <img src="assets/pranaras/pranaras-mockup-3.png" alt="Pranaras Academy laptop mockup">
+              </div>
+            </div>
+            <div class="proj-body">
+              <div class="proj-meta">
+                <span class="badge accent">Website</span>
+                <span class="badge blue dot-green">Ongoing</span>
+              </div>
+              <div class="proj-header">
+                <div>
+                  <div class="proj-title">Pranaras Academy</div>
+                  <div class="proj-subtitle">Academy Marketing Website</div>
+                </div>
+                <img src="assets/pranaras/pranaras-logo.png" alt="Pranaras Academy logo" class="proj-logo-right">
+              </div>
+              <p class="proj-desc">
+                Modern, responsive marketing website for Pranaras Academy built on Next.js App Router. Component-based
+                architecture ready to grow into a full educational platform with course listings, student dashboards,
+                and admin tooling.
+              </p>
+              <div class="proj-tech">
+                <span class="tech-pill">Next.js App Router</span>
+                <span class="tech-pill">TypeScript</span>
+                <span class="tech-pill">Tailwind CSS</span>
+                <span class="tech-pill">Dark/Light Theme</span>
+              </div>
+              <div class="proj-footer">
+                <a href="#" class="btn btn-dark btn-sm">Visit Site ↗</a>
+              </div>
+            </div>
+          </article>
+
+        </div><!-- /project-list -->
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="section-sm">
+      <div class="container">
+        <div class="cta-dark reveal" style="padding:64px;">
+          <div class="cta-dark-grid"></div>
+          <div class="cta-dark-glow"></div>
+
+          <div
+            style="position:relative;z-index:1;text-align:center;display:flex;flex-direction:column;align-items:center;">
+            <div class="cta-eyebrow">Your project, next</div>
+            <h2 class="cta-title" style="font-size:clamp(28px,4vw,48px);">Want to be on<br>this page? <em>Let's
+                talk.</em></h2>
+            <div class="cta-btns">
+              <a href="contact.html" class="btn btn-white btn-lg">Start a project →</a>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-  </footer>
-</div>
+    </section>
 
-<script src="main.js"></script>
-<script>
-function filterWork(cat, btn) {
-  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
-  document.querySelectorAll('.case-card').forEach(card => {
-    if (cat === 'all' || card.dataset.cat === cat) {
-      card.style.opacity = '1';
-      card.style.transform = '';
-    } else {
-      card.style.opacity = '0.25';
-      card.style.transform = 'scale(0.98)';
+    <div class="divider-full"></div>
+    <footer>
+      <div class="container">
+        <div class="footer-inner">
+      <a class="footer-logo" href="index.html">
+          <img src="assets/brand/solvingclub-logo.png" alt="Solving Club logo">
+          </a>
+          <ul class="footer-nav">
+            <li><a href="services.html">Services</a></li>
+            <li><a href="work.html">Work</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+          <div class="footer-socials">
+            <a class="footer-social-btn" href="#">𝕏</a>
+            <a class="footer-social-btn" href="#">in</a>
+            <a class="footer-social-btn" href="#" style="font-size:11px;">GH</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script src="main.js"></script>
+  <script>
+    function filterWork(cat, btn) {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      document.querySelectorAll('.project-article').forEach(card => {
+        if (cat === 'all' || card.dataset.cat === cat) {
+          card.classList.remove('hidden');
+        } else {
+          card.classList.add('hidden');
+        }
+      });
     }
-  });
-}
-</script>
+  </script>
 </body>
+
 </html>
