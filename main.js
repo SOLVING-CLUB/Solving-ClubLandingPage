@@ -6,8 +6,7 @@
 // Apply theme ASAP to avoid flash of wrong theme
 ; (function () {
   const saved = localStorage.getItem('sc-theme');
-  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-  const theme = saved || (prefersDark ? 'dark' : 'light');
+  const theme = saved || 'light';
   document.documentElement.setAttribute('data-theme', theme);
 }());
 
