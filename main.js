@@ -100,13 +100,28 @@ document.addEventListener('DOMContentLoaded', () => {
   initProjectCarousels();
 
   const btn = document.getElementById('themeToggle');
-  if (!btn) return;
-  btn.addEventListener('click', () => {
-    const html = document.documentElement;
-    const current = html.getAttribute('data-theme');
-    const next = current === 'dark' ? 'light' : 'dark';
-    html.setAttribute('data-theme', next);
-    localStorage.setItem('sc-theme', next);
-    applyLogoForTheme(next);
-  });
+  if (btn) {
+    btn.addEventListener('click', () => {
+      const html = document.documentElement;
+      const current = html.getAttribute('data-theme');
+      const next = current === 'dark' ? 'light' : 'dark';
+      html.setAttribute('data-theme', next);
+      localStorage.setItem('sc-theme', next);
+      applyLogoForTheme(next);
+    });
+  }
+
+  const nav = document.querySelector('.nav');
+  const menuBtn = document.getElementById('navMenuToggle');
+  if (nav && menuBtn) {
+    menuBtn.addEventListener('click', () => {
+      nav.classList.toggle('nav-open');
+    });
+
+    nav.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', () => {
+        nav.classList.remove('nav-open');
+      });
+    });
+  }
 });

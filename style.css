@@ -93,6 +93,8 @@
 html {
   scroll-behavior: smooth;
   font-size: 16px;
+  max-width: 100%;
+  overflow-x: hidden;
 }
 
 body {
@@ -100,6 +102,7 @@ body {
   background: var(--bg);
   color: var(--fg);
   -webkit-font-smoothing: antialiased;
+  max-width: 100%;
   overflow-x: hidden;
   min-height: 100vh;
   transition: background 0.4s ease, color 0.4s ease;
@@ -311,6 +314,41 @@ button {
   display: flex;
   align-items: center;
   gap: 8px;
+}
+
+/* Mobile nav toggle (hamburger) */
+.nav-menu-btn {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 8px;
+  border: 1px solid var(--border-med);
+  background: transparent;
+  padding: 0;
+  margin-left: 8px;
+}
+
+.nav-menu-btn span {
+  display: block;
+  width: 16px;
+  height: 1.6px;
+  border-radius: 999px;
+  background: var(--muted);
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.nav-menu-btn span + span {
+  margin-top: 5px;
+}
+
+.nav.nav-open .nav-menu-btn span:first-child {
+  transform: translateY(3.3px) rotate(45deg);
+}
+
+.nav.nav-open .nav-menu-btn span:last-child {
+  transform: translateY(-3.3px) rotate(-45deg);
 }
 
 /* ═══════════════════════════════════════════
@@ -924,6 +962,40 @@ button {
   .proj-img {
     min-height: 220px;
     max-height: 260px;
+  }
+
+  .nav {
+    padding: 0 20px;
+  }
+
+  .nav-menu-btn {
+    display: flex;
+  }
+
+  .nav-links {
+    display: none;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 100%;
+    transform: none;
+    margin-top: 8px;
+    padding: 10px;
+    background: var(--bg-white);
+    border-radius: 14px;
+    box-shadow: var(--shadow-lg);
+    flex-direction: column;
+    gap: 2px;
+    z-index: 600;
+  }
+
+  .nav.nav-open .nav-links {
+    display: flex;
+  }
+
+  .nav-links a {
+    justify-content: flex-start;
+    width: 100%;
   }
 }
 
