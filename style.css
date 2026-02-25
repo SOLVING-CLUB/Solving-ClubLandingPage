@@ -319,6 +319,7 @@ button {
 /* Mobile nav toggle (hamburger) */
 .nav-menu-btn {
   display: none;
+  position: relative;
   align-items: center;
   justify-content: center;
   width: 34px;
@@ -327,28 +328,44 @@ button {
   border: 1px solid var(--border-med);
   background: transparent;
   padding: 0;
-  margin-left: 8px;
 }
 
 .nav-menu-btn span {
-  display: block;
-  width: 16px;
-  height: 1.6px;
+  position: absolute;
+  left: 50%;
+  width: 18px;
+  height: 2px;
   border-radius: 999px;
-  background: var(--muted);
+  background: var(--fg);
+  transform: translateX(-50%);
+  transform-origin: center;
   transition: transform 0.2s ease, opacity 0.2s ease;
 }
 
-.nav-menu-btn span + span {
-  margin-top: 5px;
+.nav-menu-btn span:nth-child(1) {
+  top: 11px;
 }
 
-.nav.nav-open .nav-menu-btn span:first-child {
-  transform: translateY(3.3px) rotate(45deg);
+.nav-menu-btn span:nth-child(2) {
+  top: 16px;
 }
 
-.nav.nav-open .nav-menu-btn span:last-child {
-  transform: translateY(-3.3px) rotate(-45deg);
+.nav-menu-btn span:nth-child(3) {
+  top: 21px;
+}
+
+.nav.nav-open .nav-menu-btn span:nth-child(1) {
+  transform: translateX(-50%) rotate(45deg);
+  top: 16px;
+}
+
+.nav.nav-open .nav-menu-btn span:nth-child(2) {
+  opacity: 0;
+}
+
+.nav.nav-open .nav-menu-btn span:nth-child(3) {
+  transform: translateX(-50%) rotate(-45deg);
+  top: 16px;
 }
 
 /* ═══════════════════════════════════════════
@@ -1000,6 +1017,23 @@ button {
 }
 
 @media (max-width: 600px) {
+  .nav {
+    height: 54px;
+  }
+
+  .nav-logo img {
+    height: 26px;
+  }
+
+  .theme-toggle {
+    width: 32px;
+    height: 32px;
+  }
+
+  .nav-right .btn {
+    display: none;
+  }
+
   .project-list {
     margin-top: 36px;
     gap: 16px;
@@ -1119,6 +1153,18 @@ footer {
   overflow: hidden;
 }
 
+.theme-toggle::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(circle at 50% 50%, rgba(249, 61, 49, 0.22), transparent 70%);
+  opacity: 0;
+  transform: scale(0.6);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  pointer-events: none;
+}
+
 .theme-toggle:hover {
   border-color: var(--accent-border);
   color: var(--accent);
@@ -1152,6 +1198,11 @@ footer {
   transform: scale(1) rotate(0deg);
 }
 
+.theme-toggle.is-animating::after {
+  opacity: 1;
+  transform: scale(1);
+}
+
 /* Smooth transitions for dark mode switches */
 *,
 *::before,
@@ -1172,14 +1223,6 @@ footer {
 @media (max-width: 900px) {
   .container {
     padding: 0 20px;
-  }
-
-  .nav {
-    padding: 0 20px;
-  }
-
-  .nav-links {
-    display: none;
   }
 
   .section {

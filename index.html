@@ -416,13 +416,14 @@
     .cta-dark {
       background: #050608;
       border-radius: var(--radius-xl);
-      padding: 80px;
+      padding: 64px 80px 56px;
       position: relative;
       overflow: hidden;
       text-align: center;
       display: flex;
       flex-direction: column;
       align-items: center;
+      justify-content: center;
     }
 
     .cta-dark-grid {
@@ -462,9 +463,14 @@
       transform: translate(-50%, -50%);
     }
 
-    .cta-dark>* {
+    .cta-dark-inner {
       position: relative;
       z-index: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 24px;
+      max-width: 520px;
     }
 
     .cta-eyebrow {
@@ -473,18 +479,17 @@
       letter-spacing: 0.12em;
       text-transform: uppercase;
       color: var(--accent);
-      margin-bottom: 20px;
+      margin: 0;
     }
 
     .cta-title {
       font-family: 'Instrument Serif', serif;
-      font-size: clamp(32px, 5vw, 60px);
+      font-size: clamp(32px, 5vw, 56px);
       font-weight: 400;
-      line-height: 1.08;
+      line-height: 1.12;
       letter-spacing: -0.028em;
       color: white;
-      max-width: 600px;
-      margin-bottom: 18px;
+      margin: 0;
     }
 
     .cta-title em {
@@ -494,15 +499,16 @@
 
     .cta-sub {
       font-size: 15px;
-      color: rgba(255, 255, 255, 0.45);
-      max-width: 380px;
-      line-height: 1.65;
-      margin-bottom: 38px;
+      color: rgba(255, 255, 255, 0.5);
+      line-height: 1.6;
+      margin: 0;
     }
 
     .cta-btns {
       display: flex;
-      gap: 10px;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: center;
     }
 
     .btn-white {
@@ -605,6 +611,35 @@
         justify-content: center;
       }
     }
+
+    @media (max-width: 600px) {
+      .cta-dark {
+        padding: 32px 20px 28px;
+        border-radius: var(--radius-lg);
+      }
+
+      .cta-dark-inner {
+        gap: 18px;
+      }
+
+      .cta-title {
+        font-size: 26px;
+      }
+
+      .cta-sub {
+        font-size: 13px;
+      }
+
+      .cta-btns {
+        flex-direction: column;
+        width: 100%;
+      }
+
+      .cta-btns .btn {
+        width: 100%;
+        justify-content: center;
+      }
+    }
   </style>
 </head>
 
@@ -673,10 +708,6 @@
       <a class="nav-logo" href="index.html">
         <img src="assets/brand/solvingclub-logo.png" alt="Solving Club logo">
       </a>
-      <button class="nav-menu-btn" id="navMenuToggle" aria-label="Toggle navigation">
-        <span></span>
-        <span></span>
-      </button>
       <ul class="nav-links">
         <li><a href="index.html" class="active">Home</a></li>
         <li><a href="services.html">Services</a></li>
@@ -707,6 +738,11 @@
         </button>
         <a href="work.html" class="btn btn-ghost btn-sm">View work</a>
         <a href="contact.html" class="btn btn-accent btn-sm">Start a project →</a>
+        <button class="nav-menu-btn" id="navMenuToggle" aria-label="Toggle navigation" aria-expanded="false">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
       </div>
     </nav>
 
@@ -1043,15 +1079,14 @@
         <div class="cta-dark reveal">
           <div class="cta-dark-grid"></div>
           <div class="cta-dark-glow"></div>
-
-          <!-- CTA accent removed -->
-
-          <div class="cta-eyebrow">Let's build together</div>
-          <h2 class="cta-title">Ready to <em>solve</em><br>something great?</h2>
-          <p class="cta-sub">Tell us about your project and we'll respond within 24 hours.</p>
-          <div class="cta-btns">
-            <a href="contact.html" class="btn btn-white btn-lg">Start a project →</a>
-            <a href="work.html" class="btn btn-outline-white btn-lg">See case studies</a>
+          <div class="cta-dark-inner">
+            <p class="cta-eyebrow">Let's build together</p>
+            <h2 class="cta-title">Ready to <em>solve</em> something great?</h2>
+            <p class="cta-sub">Tell us about your project. We'll respond within 24 hours.</p>
+            <div class="cta-btns">
+              <a href="contact.html" class="btn btn-white btn-lg">Start a project →</a>
+              <a href="work.html" class="btn btn-outline-white btn-lg">See case studies</a>
+            </div>
           </div>
         </div>
       </div>

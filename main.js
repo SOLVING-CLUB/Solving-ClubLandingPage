@@ -108,6 +108,9 @@ document.addEventListener('DOMContentLoaded', () => {
       html.setAttribute('data-theme', next);
       localStorage.setItem('sc-theme', next);
       applyLogoForTheme(next);
+
+      btn.classList.add('is-animating');
+      setTimeout(() => btn.classList.remove('is-animating'), 350);
     });
   }
 
@@ -116,6 +119,8 @@ document.addEventListener('DOMContentLoaded', () => {
   if (nav && menuBtn) {
     menuBtn.addEventListener('click', () => {
       nav.classList.toggle('nav-open');
+      const isOpen = nav.classList.contains('nav-open');
+      menuBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
     });
 
     nav.querySelectorAll('.nav-links a').forEach(link => {

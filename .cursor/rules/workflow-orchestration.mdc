@@ -1,0 +1,33 @@
+---
+description: Workflow orchestration and quality bar for this project
+alwaysApply: true
+---
+
+# Workflow Orchestration & Quality Bar
+
+- **Plan first (Plan Mode)**  
+  - For any non-trivial task (3+ steps or architectural decisions), write a brief plan before editing code.  
+  - Re-plan if something goes sideways instead of pushing a shaky approach further.
+
+- **Use subagents for exploration**  
+  - Offload heavy research, repo exploration, or parallel analysis to subagents when it helps keep the main context focused.  
+  - Keep each subagent focused on a single clear task.
+
+- **Self-improvement loop**  
+  - After user corrections, capture the pattern in `tasks/lessons.md` so the same mistake is not repeated.  
+  - Review relevant lessons at the start of a new session in this repo.
+
+- **Verification before done**  
+  - Never consider a change complete without evidence it works (manual check, tests, or clear reasoning).  
+  - Compare behavior before vs. after when relevant and ask, “Would a staff engineer approve this?”
+
+- **Demand elegance (but avoid over-engineering)**  
+  - Prefer the simplest solution that fully solves the problem.  
+  - If a fix feels hacky and the scope is non-trivial, step back and implement the more elegant approach.
+
+- **Autonomous bug fixing**  
+  - When given a bug report, proactively trace logs/errors and fix the root cause without asking for step-by-step guidance.
+
+- **Task management**  
+  - Maintain `tasks/todo.md` with checkable items for larger efforts, marking progress as you go and summarizing results when finished.
+
