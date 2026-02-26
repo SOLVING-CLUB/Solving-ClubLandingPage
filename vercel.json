@@ -7,23 +7,15 @@
       "use": "@vercel/node"
     },
     {
-      "src": "index.html",
+      "src": "style.css",
       "use": "@vercel/static"
     },
     {
-      "src": "about.html",
+      "src": "main.js",
       "use": "@vercel/static"
     },
     {
-      "src": "services.html",
-      "use": "@vercel/static"
-    },
-    {
-      "src": "work.html",
-      "use": "@vercel/static"
-    },
-    {
-      "src": "contact.html",
+      "src": "*.html",
       "use": "@vercel/static"
     },
     {
