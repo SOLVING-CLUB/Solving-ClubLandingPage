@@ -4,8 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "vercel dev",
-    "build": "echo \"Static site\"",
-    "start": "serve ."
+    "build": "rm -rf public && mkdir public && cp -R index.html about.html services.html work.html contact.html style.css main.js assets public/",
+    "start": "serve public"
   },
   "dependencies": {
     "resend": "^4.0.0"
