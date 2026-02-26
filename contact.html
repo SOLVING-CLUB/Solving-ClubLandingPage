@@ -355,7 +355,7 @@
           </div>
 
           <div class="info-card">
-            <a class="info-row" href="mailto:hello@solvingclub.com">
+            <a class="info-row" href="mailto:contactus@solvingclub.org">
               <div class="info-icon">
                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
                   <path d="M2 4l6 4 6-4M2 4h12v9H2V4z" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"
@@ -364,11 +364,25 @@
               </div>
               <div>
                 <div class="info-label">Email</div>
-                <div class="info-value">hello@solvingclub.com</div>
+                <div class="info-value">contactus@solvingclub.org</div>
               </div>
               <span class="info-arrow">↗</span>
             </a>
-            <a class="info-row" href="#">
+            <a class="info-row" href="tel:+916304725752">
+              <div class="info-icon">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                  <path d="M4 2h3l1 3-2 1a9 9 0 004 4l1-2 3 1v3c0 .6-.4 1-1 1A11 11 0 013 3c0-.6.4-1 1-1z"
+                    stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"
+                    fill="none" />
+                </svg>
+              </div>
+              <div>
+                <div class="info-label">Phone</div>
+                <div class="info-value">+91 6304725752</div>
+              </div>
+              <span class="info-arrow">↗</span>
+            </a>
+            <!-- <a class="info-row" href="#">
               <div class="info-icon">
                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
                   <rect x="2" y="2" width="12" height="12" rx="3" stroke="currentColor" stroke-width="1.3" />
@@ -409,68 +423,70 @@
                 <div class="info-value">SolvingClub</div>
               </div>
               <span class="info-arrow">↗</span>
-            </a>
+            </a> -->
           </div>
         </div>
 
         <!-- Right: form -->
         <div class="form-card reveal reveal-d2">
-          <div class="form-header">
-            <div class="form-title">Tell us about your project</div>
-            <p class="form-sub">We'll respond within 24 hours. No templates, no auto-replies.</p>
-          </div>
+          <form id="contactForm">
+            <div class="form-header">
+              <div class="form-title">Tell us about your project</div>
+              <p class="form-sub">We'll respond within 24 hours. No templates, no auto-replies.</p>
+            </div>
 
-          <div class="frow">
-            <div class="fgroup">
-              <label>First name</label>
-              <input type="text" placeholder="John">
+            <div class="frow">
+              <div class="fgroup">
+                <label>First name</label>
+                <input type="text" name="firstName" placeholder="John" required>
+              </div>
+              <div class="fgroup">
+                <label>Last name</label>
+                <input type="text" name="lastName" placeholder="Doe" required>
+              </div>
             </div>
             <div class="fgroup">
-              <label>Last name</label>
-              <input type="text" placeholder="Doe">
+              <label>Email</label>
+              <input type="email" name="email" placeholder="john@company.com" required>
             </div>
-          </div>
-          <div class="fgroup">
-            <label>Email</label>
-            <input type="email" placeholder="john@company.com">
-          </div>
-          <div class="fgroup">
-            <label>Company / Project</label>
-            <input type="text" placeholder="What's it called?">
-          </div>
-          <div class="fgroup">
-            <label>What do you need?</label>
-            <select>
-              <option value="" disabled selected>Select a service</option>
-              <option>UI/UX Design</option>
-              <option>Web Development</option>
-              <option>Brand Identity</option>
-              <option>Mobile App</option>
-              <option>Full product build</option>
-              <option>Something else</option>
-            </select>
-          </div>
-          <div class="fgroup">
-            <label>Estimated budget</label>
-            <div class="budget-options">
-              <button class="budget-opt" onclick="selectBudget(this)">Under $5k</button>
-              <button class="budget-opt" onclick="selectBudget(this)">$5k–$15k</button>
-              <button class="budget-opt sel" onclick="selectBudget(this)">$15k–$40k</button>
-              <button class="budget-opt" onclick="selectBudget(this)">$40k+</button>
+            <div class="fgroup">
+              <label>Company / Project</label>
+              <input type="text" name="company" placeholder="What's it called?">
             </div>
-          </div>
-          <div class="fgroup">
-            <label>Tell us more</label>
-            <textarea
-              placeholder="What are you building? What problem does it solve? What's your timeline? The more detail, the better."></textarea>
-          </div>
-          <button class="submit-btn">
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-              <path d="M2 8h12M9 4l4 4-4 4" stroke="white" stroke-width="1.4" stroke-linecap="round"
-                stroke-linejoin="round" />
-            </svg>
-            Send message
-          </button>
+            <div class="fgroup">
+              <label>What do you need?</label>
+              <select name="service" required>
+                <option value="" disabled selected>Select a service</option>
+                <option>UI/UX Design</option>
+                <option>Web Development</option>
+                <option>Brand Identity</option>
+                <option>Mobile App</option>
+                <option>Full product build</option>
+                <option>Something else</option>
+              </select>
+            </div>
+            <!-- <div class="fgroup">
+              <label>Estimated budget</label>
+              <div class="budget-options">
+                <button class="budget-opt" onclick="selectBudget(this)">Under $5k</button>
+                <button class="budget-opt" onclick="selectBudget(this)">$5k–$15k</button>
+                <button class="budget-opt sel" onclick="selectBudget(this)">$15k–$40k</button>
+                <button class="budget-opt" onclick="selectBudget(this)">$40k+</button>
+              </div>
+            </div> -->
+            <div class="fgroup">
+              <label>Tell us more</label>
+              <textarea name="details" required
+                placeholder="What are you building? What problem does it solve? What's your timeline? The more detail, the better."></textarea>
+            </div>
+            <button class="submit-btn" type="submit">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                <path d="M2 8h12M9 4l4 4-4 4" stroke="white" stroke-width="1.4" stroke-linecap="round"
+                  stroke-linejoin="round" />
+              </svg>
+              Send message
+            </button>
+          </form>
         </div>
 
       </div>
@@ -489,11 +505,11 @@
             <li><a href="about.html">About</a></li>
             <li><a href="contact.html">Contact</a></li>
           </ul>
-          <div class="footer-socials">
+          <!-- <div class="footer-socials">
             <a class="footer-social-btn" href="#">𝕏</a>
             <a class="footer-social-btn" href="#">in</a>
             <a class="footer-social-btn" href="#" style="font-size:11px;">GH</a>
-          </div>
+          </div> -->
         </div>
       </div>
     </footer>
@@ -504,6 +520,31 @@
     function selectBudget(el) {
       document.querySelectorAll('.budget-opt').forEach(b => b.classList.remove('sel'));
       el.classList.add('sel');
+    }
+
+    const form = document.getElementById('contactForm');
+    if (form) {
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        const data = Object.fromEntries(new FormData(form).entries());
+
+        try {
+          const res = await fetch('/api/contact', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data),
+          });
+
+          if (!res.ok) throw new Error('Request failed');
+
+          alert('Thanks! We’ll get back to you soon.');
+          form.reset();
+        } catch (err) {
+          console.error(err);
+          alert('Something went wrong. Please try again.');
+        }
+      });
     }
   </script>
 </body>

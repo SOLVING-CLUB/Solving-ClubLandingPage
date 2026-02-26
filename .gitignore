@@ -1,0 +1,29 @@
+# Node / package managers
+node_modules/
+npm-debug.log*
+yarn.lock
+pnpm-lock.yaml
+package-lock.json
+
+# Logs
+logs
+*.log
+*.tmp
+
+# OS / editor cruft
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Environment / secrets
+.env
+.env.*
+
+# Vercel / build artifacts
+.vercel
+.next
+dist
+out
+
+/.claude
