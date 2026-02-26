@@ -1,0 +1,35 @@
+{
+  "version": 2,
+  "outputDirectory": ".",
+  "builds": [
+    {
+      "src": "api/**/*.js",
+      "use": "@vercel/node"
+    },
+    {
+      "src": "index.html",
+      "use": "@vercel/static"
+    },
+    {
+      "src": "about.html",
+      "use": "@vercel/static"
+    },
+    {
+      "src": "services.html",
+      "use": "@vercel/static"
+    },
+    {
+      "src": "work.html",
+      "use": "@vercel/static"
+    },
+    {
+      "src": "contact.html",
+      "use": "@vercel/static"
+    },
+    {
+      "src": "assets/**/*",
+      "use": "@vercel/static"
+    }
+  ]
+}
+
